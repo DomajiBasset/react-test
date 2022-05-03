@@ -1,0 +1,19 @@
+{
+  "devDependencies": {
+    "@types/jquery": "^3.5.14",
+    "concurrently": "^7.1.0",
+    "nodemon": "^2.0.16"
+  },
+  "name": "wagi",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "start:build": "tsc -w",
+    "start:run": "nodemon ./dist/index.js",
+    "start": "concurrently npm:start:*"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": ""
+}

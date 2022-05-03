@@ -1,0 +1,46 @@
+<head>
+
+</head>
+
+<body>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js'></script>
+    <script src="./dist/index.js"></script>
+    <div class="container"></div>
+    <script>
+        const listurl = 'http://125.228.2.127/interview_bk/RtrS1006/list.php';
+        // 發出 Request
+        var request = new XMLHttpRequest();
+        request.open('GET', listurl, true);
+
+        request.onload = function () {
+            // if (this.status >= 200 && this.status < 400) {
+            //     console.log(this.response);
+            //     var resp = this.response;
+            //     var json = JSON.parse(resp)
+            //     var comments = json.comments
+            //     return;
+            //     for (var i = 0; i < comments.length; i++) {
+            //         var comment = comments[i]
+            //         var div = document.createElement('div')
+            //         div.classList.add('card')
+            //         div.innerHTML = `
+            //     <div class="card__avatar"></div>
+            //     <div class="card__body">
+            //         <div class="card__info">
+            //           <span class="card__author">
+            //             ${encodeHTML(comment.nickname)}(@${encodeHTML(comment.username)})
+            //           </span>
+            //           <span class="card__time">
+            //             ${encodeHTML(comment.created_at)}
+            //           </span>
+            //         </div>
+            //         <p class="card__content">${encodeHTML(comment.content)}</p>
+            //     </div>
+            //   `
+            //         document.querySelector('section').appendChild(div)
+            //     }
+            // };
+        };
+        request.send();
+    </script>
+</body>

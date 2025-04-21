@@ -8,7 +8,7 @@ type Props = {
 
 function ButtonRoute({ labelName, to, }: Props) {
     return (
-        <li>
+        <li className="hover:bg-gray-700 p-2 rounded cursor-pointer">
             <Link to={to}>{labelName}</Link>
         </li>
     );

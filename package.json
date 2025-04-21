@@ -1,19 +1,49 @@
 {
-  "devDependencies": {
-    "@types/jquery": "^3.5.14",
-    "concurrently": "^7.1.0",
-    "nodemon": "^2.0.16"
-  },
-  "name": "wagi",
+  "name": "front-react",
   "version": "1.0.0",
-  "main": "index.js",
   "scripts": {
-    "start:build": "tsc -w",
-    "start:run": "nodemon ./dist/index.js",
-    "start": "concurrently npm:start:*"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "vite --host",
+    "build": "vite build",
+    "preview": "vite preview --port 4173",
+    "lint": "eslint \"**/*.{ts,tsx}\"",
+    "tailwind:init": "tailwindcss init -p"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "description": ""
+  "description": "",
+  "dependencies": {
+    "@eslint/compat": "^1.2.4",
+    "@tailwindcss/postcss": "^4.1.4",
+    "@tailwindcss/vite": "^4.1.4",
+    "@types/react": "19.0.7",
+    "@types/react-dom": "19.0.3",
+    "@types/react-router": "^5.1.20",
+    "@vitejs/plugin-react": "^4.3.4",
+    "date-fns": "^4.1.0",
+    "react": "19.0.0",
+    "react-compiler-runtime": "^19.0.0-beta-df7b47d-20241124",
+    "react-datepicker": "^8.3.0",
+    "react-dom": "19.0.0",
+    "react-router": "^7.1.3",
+    "react-router-dom": "^7.5.0",
+    "sass": "^1.86.3",
+    "typescript-eslint": "^8.17.0",
+    "vite": "^6.0.2"
+  },
+  "devDependencies": {
+    "@ckeditor/ckeditor5-inspector": "^4.1.0",
+    "@types/node": "^22.10.1",
+    "@typescript-eslint/eslint-plugin": "^8.17.0",
+    "@typescript-eslint/parser": "^8.17.0",
+    "autoprefixer": "^10.4.21",
+    "babel-plugin-react-compiler": "^19.0.0-beta-df7b47d-20241124",
+    "eslint": "^9.16.0",
+    "eslint-plugin-react": "^7.37.2",
+    "eslint-plugin-react-compiler": "^19.0.0-beta-df7b47d-20241124",
+    "eslint-plugin-react-hooks": "^5.0.0",
+    "postcss": "^8.5.3",
+    "tailwindcss": "^4.1.4"
+  }
 }

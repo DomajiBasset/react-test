@@ -1,0 +1,59 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+.selected-count {
+	margin: 0 20px 0 0;
+}
+
+.label-input-item {
+	margin: 0 0 0 10px;
+}
+
+.th-width-5 {
+	width: 5%;
+}
+
+.th-width-8 {
+	width: 8%;
+}
+
+.th-width-10 {
+	width: 10%;
+}
+
+.th-width-12 {
+	width: 12%;
+}
+
+.th-width-18 {
+	width: 18%;
+}
+
+.th-width-auto {
+	width: auto;
+}
+
+.popup {
+	position: absolute;
+	top: 0;
+	left: 100px;
+	z-index: 999;
+}
+
+.ml-5 {
+	margin-left: 5% !important;
+}
+
+.ml-10 {
+	margin-left: 10% !important;
+}
+
+.mr-5 {
+	margin-right: 5% !important;
+}
+
+.mr-10 {
+	margin-right: 10% !important;
+}

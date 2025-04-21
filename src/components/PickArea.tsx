@@ -66,18 +66,18 @@ const PickArea = ({ value, setValue }: Props) => {
     const renderTable = () => {
         const rowData = selectedOption === '1' ? UnselectData : value;
         return (
-            <table className="data_table pick-cont sort-table">
+            <table className="data_table pick-cont sort-table w-full border-collapse text-sm whitespace-nowrap border">
                 <thead>
-                    <tr>
-                        <th className='th-width-5' >
+                    <tr className='bg-gray-200'>
+                        <th className='th-width-5 px-4 py-2 text-center' >
                             <input
                                 type="checkbox"
-                                className="cb-pick-all"
+                                className="cb-pick-all w-4 h-4 text-blue-600 rounded border-gray-300 focus:ring-blue-400"
                                 checked={isAllSelected}
                                 onChange={handleSelectAll}></input>
                         </th>
                         {th_Columns.map((col, index) => (
-                            <th key={index} className={col.className}>
+                            <th key={index} className={`${col.className} px-4 py-2 text-left`}>
                                 {col.title}
                             </th>
                         ))}
@@ -126,14 +126,22 @@ const PickArea = ({ value, setValue }: Props) => {
             <input
                 type="button"
                 value="選　擇"
-                className={`${selectedOption === '1' ? '' : 'hide'} "pick-btn"`}
+                className={`px-4 py-2 rounded text-white font-semibold transition 
+                ${selectedOption === '1' ? '' : 'hidden'} 
+                ${Object.keys(selectedRows).length <= 0
+                        ? 'bg-gray-400 cursor-not-allowed'
+                        : 'bg-blue-600 hover:bg-blue-700 cursor-pointer'}`}
                 disabled={Object.keys(selectedRows).length <= 0}
                 onClick={handleClick}
             />
             <input
                 type="button"
                 value="取　消"
-                className={`${selectedOption === '2' ? '' : 'hide'} "cancel-pick-btn"`}
+                className={`px-4 py-2 rounded text-white font-semibold transition 
+                ${selectedOption === '2' ? '' : 'hidden'} 
+                ${Object.keys(selectedRows).length <= 0
+                        ? 'bg-gray-400 cursor-not-allowed'
+                        : 'bg-red-600 hover:bg-red-700 cursor-pointer'}`}
                 disabled={Object.keys(selectedRows).length <= 0}
                 onClick={handleClick}
             />

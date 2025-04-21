@@ -20,6 +20,8 @@ export default defineConfig({
         },
     },
     server: {
+        host: true,
+        port: 1111,
         open: "/", // 設定開發伺服器啟動時自動打開 index.html
     },
     define: {

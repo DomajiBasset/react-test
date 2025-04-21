@@ -1,15 +1,25 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 
 type Props = {
     labelName: string,
     to: string,
+    // icon: string,
+    collapsed: boolean
 }
 
 function ButtonRoute({ labelName, to, }: Props) {
     return (
-        <li className="hover:bg-gray-700 p-2 rounded cursor-pointer">
-            <Link to={to}>{labelName}</Link>
+        <li>
+            <NavLink
+                to={to}
+                className={({ isActive }) =>
+                    `block p-2 cursor-pointer ${isActive ? 'bg-blue-600 text-white' : 'hover:bg-gray-700'
+                    }`
+                }
+            >
+                {labelName}
+            </NavLink>
         </li>
     );
 }

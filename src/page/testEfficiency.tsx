@@ -3,6 +3,7 @@ import { createRoot, Root } from "react-dom/client";
 import '../style/main.scss';
 import '../style/test.css';
 import InputSection from "../components/InputSection";
+import $ from 'jquery';
 
 const Row = (({ text }: { text: string }) => {
   return <div className="row">{text}</div>;
@@ -48,6 +49,27 @@ const ReactApp = (({ count, dataVersion, onRendered, shouldMeasure }: {
       onRendered(); // callback 通知父層
     });
   }, [shouldMeasure]);
+
+  useEffect(() => {
+    console.log(window.$);
+    if (typeof window.$ === 'undefined') {
+      const script = document.createElement('script');
+      script.src = "https://code.jquery.com/jquery-3.7.2.min.js";
+      script.async = true;
+      script.onload = () => {
+        console.log('jQuery Loaded!');
+        // 可以在這裡開始使用 jQuery
+      };
+      document.body.appendChild(script);
+      console.log('OK', window.$);
+    }
+
+    return () => {
+      // 可選清理：移除 jQuery
+      const script = document.querySelector('script[src="https://code.jquery.com/jquery-3.7.2.min.js"]');
+      if (script) document.body.removeChild(script);
+    };
+  }, []);
   // console.time('label');
   return (
     <div>
@@ -159,10 +181,10 @@ export function TestEfficiencyPage() {
   }
 
   return (<>
-    <form name="form1" className="mainForm">
+    <form name="form1" className="mainForm w-full max-w-4xl mx-auto py-6 px-4">
 
       <div className="form">
-        <div className="form_table">
+        <div className="form_table space-y-6">
           <div className="flex flex-col items-center space-y-5">
             <InputSection
               value={count}
@@ -179,7 +201,7 @@ export function TestEfficiencyPage() {
               disabled={isBtnDisabled}
             ></InputSection>
 
-            <div className="flex items-center space-x-4">
+            <div className="flex items-center justify-center space-x-6">
               <div id="react-test" className="">
                 <ReactApp count={countRef.current} dataVersion={updatecountRef.current} onRendered={handleAppRender} shouldMeasure={shouldMeasure} />
               </div>
@@ -191,8 +213,7 @@ export function TestEfficiencyPage() {
       </div>
     </form>
 
-    <div className="divider"></div>
-
+    <div className="divider border-8 rounded border-blue-500"></div>
   </>)
 }
 

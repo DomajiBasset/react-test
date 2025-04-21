@@ -19,8 +19,13 @@ const AreaWrapper = ({
     labelClassName = "",
     childrenClassName = "" }: { label: string; children: React.ReactNode, labelClassName?: string, childrenClassName?: string }) => (
     <>
-        <Area iDiv={<><div>{label}</div></>} className={labelClassName} />
-        <Area iDiv={children} className={childrenClassName} />
+        <div className="flex flex-col w-full mb-4 rounded shadow">
+            {/* 標籤區域 */}
+            <Area iDiv={<div className={labelClassName}>{label}</div>} className="bg-gray-200 p-2 rounded-t" />
+
+            {/* 內容區域 */}
+            <Area iDiv={children} className={`bg-gray-100 p-2  ${childrenClassName}`} />
+        </div>
     </>
 );
 

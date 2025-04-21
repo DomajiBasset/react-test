@@ -53,15 +53,19 @@ export default function Button_Swap({ iData = dataExchange, onValueChange }: Pro
         type={iData.type1}
         size={iData.size1}
         value={input1}
+        className="border p-2 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
         onChange={handleChange1}
       />
 
-      <a style={aStyle} className="icon-change-btn" onClick={swapValues}></a>
+      <a style={aStyle}
+        className="icon-change-btn cursor-pointer hover:text-blue-500"
+        onClick={swapValues}></a>
 
       <input
         type={iData.type2}
         size={iData.size2}
         value={input2}
+        className="border p-2 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
         onChange={handleChange2}
       />
     </>

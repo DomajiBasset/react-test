@@ -50,7 +50,6 @@ const ReactApp = (({ count, dataVersion, onRendered, shouldMeasure }: {
   }, [shouldMeasure]);
 
   useEffect(() => {
-    console.log(window.$);
     if (typeof window.$ === 'undefined') {
       const script = document.createElement('script');
       script.src = "https://code.jquery.com/jquery-3.7.2.min.js";

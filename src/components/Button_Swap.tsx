@@ -2,8 +2,7 @@ import React, { useEffect, useState } from "react";
 import { swapValuesGeneric } from "../helpers/utils";
 import { dataExchange, SwapInput } from "../config/exchange.config";
 import { ArrowsRightLeftIcon } from "@heroicons/react/24/solid";
-
-// import $ from 'jquery-vite'; //已在html 引入
+import { SearchInput } from "./InputSearch";
 
 type Props = {
   iData?: SwapInput;
@@ -50,6 +49,10 @@ export default function Button_Swap({ iData = dataExchange, onValueChange }: Pro
 
   return (
     <>
+      <SearchInput
+        iData={{ type1: "text", size1: 30 }}
+        suggestions={["台北", "台中", "台南", "高雄", "基隆", "新竹"]}
+      />
       <input
         type={iData.type1}
         size={iData.size1}

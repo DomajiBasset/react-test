@@ -1,5 +1,5 @@
 import React, { useReducer } from "react";
-import BackButton from "../components/ButtonBack";
+import BackButton from "../components/BackButton";
 
 interface State {
     count: number;

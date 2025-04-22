@@ -9,13 +9,12 @@ const colors = [
     "bg-purple-300",
     "bg-pink-300",
 ];
-
-interface BgColorChangerProps {
+interface BackgroundColorPickerProps {
     initialColor?: string;
     onChange?: (color: string) => void;
 }
 
-const BgColorChanger: React.FC<BgColorChangerProps> = ({
+const BackgroundColorPicker : React.FC<BackgroundColorPickerProps> = ({
     initialColor = colors[0],
     onChange,
 }) => {
@@ -56,4 +55,4 @@ const BgColorChanger: React.FC<BgColorChangerProps> = ({
     );
 };
 
-export default BgColorChanger;
+export default BackgroundColorPicker ;

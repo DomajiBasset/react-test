@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { BrowserRouter, Link, Route, Routes } from "react-router-dom";
 import { routeConfig } from '../config/route.config';
-import ButtonRoute from "./ButtonRoute";
-import BgColorChanger from "./BgColorChanger";
+import RouteButton from "./RouteButton";
+import BackgroundColorPicker  from "./BackgroundColorPicker";
 import { Bars3Icon } from '@heroicons/react/24/solid';
 
 
@@ -16,7 +16,7 @@ function LeftMenu({ activeTab, iCollapsed }: { activeTab: string, iCollapsed: bo
                 <div className={`left-area bg-gray-800 text-white transition-all duration-300 ${isCollapsed ? 'w-0 overflow-hidden' : 'w-60'}`}>
                     <ul className="space-y-2 mt-16">
                         {routeConfig.map((route, index) => (
-                            <ButtonRoute
+                            <RouteButton
                                 key={index}
                                 labelName={isCollapsed ? "" : route.labelName}
                                 to={route.to}
@@ -34,7 +34,7 @@ function LeftMenu({ activeTab, iCollapsed }: { activeTab: string, iCollapsed: bo
                         >
                             <Bars3Icon className="w-6 h-6 text-gray-700" />
                         </button>
-                        <BgColorChanger
+                        <BackgroundColorPicker 
                             initialColor={bgColor}
                             onChange={(color) => setBgColor(color)}
                         />

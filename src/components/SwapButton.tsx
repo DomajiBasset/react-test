@@ -2,14 +2,14 @@ import React, { useEffect, useState } from "react";
 import { swapValuesGeneric } from "../helpers/utils";
 import { dataExchange, SwapInput } from "../config/exchange.config";
 import { ArrowsRightLeftIcon } from "@heroicons/react/24/solid";
-import { SearchInput } from "./InputSearch";
+import { SearchInput } from "./SearchInput";
 
 type Props = {
   iData?: SwapInput;
   onValueChange?: (val1: string, val2: string) => void;
 };
 // props 是 React 元件的第一個參數	一定是物件形式 {}
-export default function Button_Swap({ iData = dataExchange, onValueChange }: Props) {
+export default function SwapButton({ iData = dataExchange, onValueChange }: Props) {
   // 定義狀態來儲存兩個輸入框的值
   const [input1, setInput1] = useState(iData.val1);
   const [input2, setInput2] = useState(iData.val2);

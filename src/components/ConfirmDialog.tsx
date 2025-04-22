@@ -1,6 +1,4 @@
-// components/ConfirmDialog.tsx
 import React from "react";
-import { ReactNode } from "react";
 
 type Props = {
     isOpen: boolean;
@@ -10,7 +8,7 @@ type Props = {
     onCancel: () => void;
 };
 
-const DialogConfirm = ({ isOpen, title, message, onConfirm, onCancel }: Props) => {
+const ConfirmDialog = ({ isOpen, title, message, onConfirm, onCancel }: Props) => {
     if (!isOpen) return null;
 
     return (
@@ -41,4 +39,4 @@ const DialogConfirm = ({ isOpen, title, message, onConfirm, onCancel }: Props) =
     );
 };
 
-export default DialogConfirm;
+export default ConfirmDialog;

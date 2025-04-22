@@ -8,7 +8,7 @@ type Props = {
     disabled: boolean;
 };
 
-const InputSection = ({
+const SectionInput = ({
     value,
     setValue,
     onClick,
@@ -45,4 +45,4 @@ const InputSection = ({
     );
 };
 
-export default InputSection;
+export default SectionInput;

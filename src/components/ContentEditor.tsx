@@ -1,24 +1,15 @@
 import React, { useEffect, useRef, useState } from "react";
 
-interface ContentEditProps {
+interface ContentEditorProps {
     maxLength: number; // 可選的最大長度屬性
     maxRows?: number;
     minRows?: number;
     onChange?: (value: string) => void; // 加這個
 }
 
-// type ContentEditProps = {
-//     maxLength: number;
-//     maxRows?: number;
-//     minRows?: number;
-//     onChange?: (value: string) => void; // 加這個
-// };
-
-const ContentEdit: React.FC<ContentEditProps> = ({ maxLength, maxRows = 6, minRows = 1, onChange }) => {
-
+const ContentEditor: React.FC<ContentEditorProps> = ({ maxLength, maxRows = 6, minRows = 1, onChange }) => {
     const [content, setContent] = useState(""); // 儲存內容
     const editableRef = useRef<HTMLDivElement>(null); // 參考 contentEditable 的元素
-
     const setLimitRow = (iEle: HTMLElement | null, iMaxRows: number, iMinRows: number) => {
         if (!iEle) return;
 
@@ -82,10 +73,9 @@ const ContentEdit: React.FC<ContentEditProps> = ({ maxLength, maxRows = 6, minRo
                 contentEditable="true"
                 onInput={handleInput} // 監聽輸入變更
             />
-            {/* 隱藏輸入欄位，確保資料可以提交 */}
             <input type="hidden" value={content} />
         </div>
     )
 }
 
-export default ContentEdit;
+export default ContentEditor;

@@ -8,7 +8,7 @@ type Props = {
     collapsed: boolean
 }
 
-function ButtonRoute({ labelName, to, }: Props) {
+function RouteButton({ labelName, to, }: Props) {
     return (
         <li>
             <NavLink
@@ -24,4 +24,4 @@ function ButtonRoute({ labelName, to, }: Props) {
     );
 }
 
-export default ButtonRoute;
+export default RouteButton;

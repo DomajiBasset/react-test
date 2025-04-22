@@ -1,8 +1,8 @@
 import React, { useState, useReducer } from "react";
-import Button_Swap from "../components/Button_Swap.js";
+import SwapButton from "../components/SwapButton.js";
 import AreaWrapper from "../components/Area.js";
 import PickArea from "../components/PickArea.js";
-import ContentEdit from "../components/ContentEdit.js";
+import ContentEditor from "../components/ContentEditor.js";
 import DatePickerTest from "../components/DatePickerTest.js";
 import { formReducer, FormState } from "../reducer/formReducer.js";
 import { DataList } from "../components/DataList.js";
@@ -64,7 +64,7 @@ export const Home = () => {
     <form name="form1" className="mainForm" onSubmit={handleSubmit}>
       <div style={aStyle}>
         <AreaWrapper label="*起訖">
-          <Button_Swap
+          <SwapButton
             onValueChange={(val1, val2) => {
               dispatch({ type: "SET_START_PLACE", payload: val1 });
               dispatch({ type: "SET_END_PLACE", payload: val2 });
@@ -86,7 +86,7 @@ export const Home = () => {
         </AreaWrapper>
 
         <AreaWrapper label="CE">
-          <ContentEdit
+          <ContentEditor
             maxLength={100}
             maxRows={5}
             minRows={3}

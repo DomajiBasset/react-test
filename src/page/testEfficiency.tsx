@@ -1,7 +1,7 @@
 import React, { StrictMode, useEffect, useRef, useState } from "react";
 import { createRoot, Root } from "react-dom/client";
 import '../style/main.scss';
-import InputSection from "../components/InputSection";
+import SectionInput from "../components/SectionInput";
 import $ from 'jquery';
 
 const Row = (({ text }: { text: string }) => {
@@ -182,20 +182,20 @@ export function TestEfficiencyPage() {
       <div className="form">
         <div className="form_table space-y-6">
           <div className="flex flex-col items-center space-y-5">
-            <InputSection
+            <SectionInput
               value={count}
               setValue={setCount}
               onClick={handleClick}
               buttonLabel="開始測試"
               disabled={isBtnDisabled}
-            ></InputSection>
-            <InputSection
+            ></SectionInput>
+            <SectionInput
               value={updatecount}
               setValue={setUpdateCount}
               onClick={handleClick_Update}
               buttonLabel="更新測試"
               disabled={isBtnDisabled}
-            ></InputSection>
+            ></SectionInput>
 
             <div className="flex items-center justify-center space-x-6">
               <div id="react-test" className="">

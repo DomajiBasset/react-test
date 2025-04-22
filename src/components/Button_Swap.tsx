@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { swapValuesGeneric } from "../helpers/utils";
 import { dataExchange, SwapInput } from "../config/exchange.config";
+import { ArrowsRightLeftIcon } from "@heroicons/react/24/solid";
 
 // import $ from 'jquery-vite'; //已在html 引入
 
@@ -59,7 +60,9 @@ export default function Button_Swap({ iData = dataExchange, onValueChange }: Pro
 
       <a style={aStyle}
         className="icon-change-btn cursor-pointer hover:text-blue-500"
-        onClick={swapValues}></a>
+        onClick={swapValues}>
+        <ArrowsRightLeftIcon className="w-5 h-5 inline-block" />
+      </a>
 
       <input
         type={iData.type2}

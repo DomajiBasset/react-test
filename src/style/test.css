@@ -1,1 +1,9 @@
 @import "tailwindcss";
+
+
+/* 在 tailwind.css 或其他全域樣式中 */
+@layer components {
+	.divider {
+		@apply border-8 border-blue-500;
+	}
+}

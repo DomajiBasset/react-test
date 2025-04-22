@@ -108,10 +108,3 @@ export const MainApp = () => {
     <DataList data={formList} />
   </>);
 };
-
-const element = document.getElementById("react-item") as HTMLElement;
-if (element) {
-  element.style.width = '100%';
-  const root = createRoot(element);
-  root.render(<StrictMode><MainApp /></StrictMode>);
-}

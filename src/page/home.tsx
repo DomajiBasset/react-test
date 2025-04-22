@@ -1,10 +1,16 @@
 import React, { StrictMode } from "react";
-import { createRoot } from "react-dom/client";
+import { useNavigate } from "react-router-dom";
 
 export function Home() {
+    const navigate = useNavigate();
+
+    const handleLogin = (e: React.FormEvent) => {
+        e.preventDefault();
+        navigate("/main");
+    };
 
     return (<>
-        <form name="form1" className="mainForm mx-auto mt-10 bg-white p-8 rounded shadow space-y-6">
+        <form name="form1" className="mainForm mx-auto mt-0 bg-white p-8 space-y-6" onSubmit={handleLogin}>
             <div>
                 <label className="block text-gray-700 font-semibold mb-2" htmlFor="email">
                     Email
@@ -33,20 +39,7 @@ export function Home() {
             >
                 登入
             </button>
-            <div className="form">
-                <div className="form_table">
-
-                </div>
-            </div>
         </form>
     </>
     )
 }
-
-
-// const element = document.getElementById("react-item") as HTMLElement;
-// if (element) {
-//     element.style.width = '100%';
-//     const root = createRoot(element);
-//     root.render(<StrictMode><Home /></StrictMode>);
-// }

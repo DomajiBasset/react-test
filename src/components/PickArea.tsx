@@ -66,7 +66,7 @@ const PickArea = ({ value, setValue }: Props) => {
     const renderTable = () => {
         const rowData = selectedOption === '1' ? UnselectData : value;
         return (
-            <table className="data_table pick-cont sort-table w-full border-collapse text-sm whitespace-nowrap border">
+            <table className="data_table pick-cont sort-table w-full border-collapse text-sm whitespace-nowrap border-t">
                 <thead>
                     <tr className='bg-gray-200'>
                         <th className='th-width-5 px-4 py-2 text-center' >
@@ -98,7 +98,7 @@ const PickArea = ({ value, setValue }: Props) => {
     };
 
     return (
-        <div className="picked-area">
+        <div className="picked-area border-t">
             <label htmlFor="radio-1" className="label-input-item">
                 <input
                     type="radio"
@@ -126,7 +126,7 @@ const PickArea = ({ value, setValue }: Props) => {
             <input
                 type="button"
                 value="選　擇"
-                className={`px-4 py-2 rounded text-white font-semibold transition 
+                className={`px-2 py-1 rounded text-white font-semibold transition 
                 ${selectedOption === '1' ? '' : 'hidden'} 
                 ${Object.keys(selectedRows).length <= 0
                         ? 'bg-gray-400 cursor-not-allowed'
@@ -137,7 +137,7 @@ const PickArea = ({ value, setValue }: Props) => {
             <input
                 type="button"
                 value="取　消"
-                className={`px-4 py-2 rounded text-white font-semibold transition 
+                className={`px-2 py-1 rounded text-white font-semibold transition 
                 ${selectedOption === '2' ? '' : 'hidden'} 
                 ${Object.keys(selectedRows).length <= 0
                         ? 'bg-gray-400 cursor-not-allowed'

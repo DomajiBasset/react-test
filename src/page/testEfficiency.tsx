@@ -1,7 +1,6 @@
 import React, { StrictMode, useEffect, useRef, useState } from "react";
 import { createRoot, Root } from "react-dom/client";
 import '../style/main.scss';
-import '../style/test.css';
 import InputSection from "../components/InputSection";
 import $ from 'jquery';
 
@@ -57,20 +56,19 @@ const ReactApp = (({ count, dataVersion, onRendered, shouldMeasure }: {
       script.src = "https://code.jquery.com/jquery-3.7.2.min.js";
       script.async = true;
       script.onload = () => {
-        console.log('jQuery Loaded!');
-        // 可以在這裡開始使用 jQuery
       };
       document.body.appendChild(script);
-      console.log('OK', window.$);
     }
 
     return () => {
       // 可選清理：移除 jQuery
       const script = document.querySelector('script[src="https://code.jquery.com/jquery-3.7.2.min.js"]');
-      if (script) document.body.removeChild(script);
+      if (script) {
+        document.body.removeChild(script);
+      }
     };
   }, []);
-  // console.time('label');
+
   return (
     <div>
       {data.map((item, index) => (
@@ -78,7 +76,6 @@ const ReactApp = (({ count, dataVersion, onRendered, shouldMeasure }: {
       ))}
     </div>
   );
-  // console.timeEnd('label');
 });
 
 function createNativeDOM(iCount: number): Promise<void> {
@@ -129,7 +126,7 @@ function updatePartialNativeDOM(iCount: number): Promise<void> {
     }
 
     console.timeEnd('Vanilla Partial Update');
-    resolve(); // 為了能夠 await 用
+    resolve();
   });
 }
 
@@ -213,17 +210,6 @@ export function TestEfficiencyPage() {
       </div>
     </form>
 
-    <div className="divider border-8 rounded border-blue-500"></div>
+    <div className="divider"></div>
   </>)
-}
-
-const element = document.getElementById("react-item") as HTMLElement;
-let root: Root | null = null;
-if (element) {
-  element.style.width = '100%';
-  if (!root) {
-    root = createRoot(element);
-  } else {
-  }
-  root.render(<StrictMode><TestEfficiencyPage /></StrictMode>);
 }

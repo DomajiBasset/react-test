@@ -1,20 +1,31 @@
 import React, { useEffect, useRef } from "react";
 import { useState } from "react";
 
-export const SearchInput = ({ iData, suggestions }: any) => {
-    const [input1, setInput] = useState("");
+type Props = {
+    data: {
+        type: string,
+        size: number,
+        value: string
+    }
+    onChange: (val: string) => void;
+    suggestions: string[];
+};
+
+export const SearchInput = ({ data, suggestions, onChange }: Props) => {
+    // const [input1, setInput] = useState("");
     const [filtered, setFiltered] = useState<string[]>([]);
     const [showSuggestions, setShowSuggestions] = useState(false);
     const wrapperRef = useRef<HTMLDivElement>(null);
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const value = e.target.value;
-        setInput(value);
+        // setInput(value);
         const matched = suggestions.filter((s: string) =>
             s.toLowerCase().includes(value.toLowerCase())
         );
         setFiltered(matched);
         setShowSuggestions(true);
+        onChange(e.target.value);
     };
 
     const handleFocus = () => {
@@ -23,10 +34,9 @@ export const SearchInput = ({ iData, suggestions }: any) => {
     };
 
     const handleSelect = (value: string) => {
-        setInput(value);
+        onChange(value);
         setShowSuggestions(false);
     };
-
 
     useEffect(() => {
         const handleClickOutside = (event: MouseEvent) => {
@@ -42,12 +52,12 @@ export const SearchInput = ({ iData, suggestions }: any) => {
 
     return (
         <>
-            <div ref={wrapperRef} className="relative w-full">
+            <div ref={wrapperRef} className="relative">
                 <input
-                    type={iData.type1}
-                    size={iData.size1}
-                    value={input1}
-                    className="w-full border p-2 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    type={data.type}
+                    size={data.size}
+                    value={data.value}
+                    className="border p-2 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
                     onChange={handleChange}
                     onFocus={handleFocus}
                 />

@@ -1,22 +1,13 @@
-import React, { useRef, useState, useEffect, StrictMode, useReducer } from "react";
-import { createRoot } from "react-dom/client";
+import React, { useState, useReducer } from "react";
 import Button_Swap from "../components/Button_Swap.js";
-import '../style/main.scss';
-
-// import { Routes } from "../node_modules/react-router/dist/development/index.js";
-// import { render } from 'react-dom';
-
-import { TestEfficiencyPage } from "./testEfficiency.js";
-import { Login } from "./login.js";
 import AreaWrapper from "../components/Area.js";
 import PickArea from "../components/PickArea.js";
 import ContentEdit from "../components/ContentEdit.js";
 import DatePickerTest from "../components/DatePickerTest.js";
 import { formReducer, FormState } from "../reducer/formReducer.js";
 import { DataList } from "../components/DataList.js";
-import { BrowserRouter, Route, Routes, useNavigate } from "react-router";
-import ButtonRoute from "../components/ButtonRoute.js";
-
+import { useNavigate } from "react-router";
+import '../style/main.scss';
 
 export const Home = () => {
   const navigate = useNavigate();

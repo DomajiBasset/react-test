@@ -48,6 +48,7 @@ const PickArea = ({ value, setValue }: Props) => {
             setUnSelectData(updatedUnselectData);
             setValue(newSelectData);
             setSelectedRows({});
+            setSelectedOption('2');
         } else {
             const updatedSelectData = newSelectData.filter((data) => {
                 if (selectedRows[data.id]) {
@@ -59,6 +60,7 @@ const PickArea = ({ value, setValue }: Props) => {
             setValue(updatedSelectData);
             setUnSelectData(newUnselectData);
             setSelectedRows({});
+            setSelectedOption('1');
         }
     };
 
@@ -68,7 +70,7 @@ const PickArea = ({ value, setValue }: Props) => {
         return (
             <table className="data_table pick-cont sort-table w-full border-collapse text-sm whitespace-nowrap border-t">
                 <thead>
-                    <tr className='bg-gray-200'>
+                    <tr className={selectedOption === '1' ? 'bg-green-400' : 'bg-blue-400'}>
                         <th className='th-width-5 px-4 py-2 text-center' >
                             <input
                                 type="checkbox"
@@ -98,7 +100,9 @@ const PickArea = ({ value, setValue }: Props) => {
     };
 
     return (
-        <div className="picked-area border-t">
+        <div
+            className={`data_table pick-cont sort-table w-full border-collapse text-sm whitespace-nowrap border-t ${selectedOption === '1' ? 'bg-green-200' : 'bg-blue-200'
+                }`}>
             <label htmlFor="radio-1" className="label-input-item">
                 <input
                     type="radio"

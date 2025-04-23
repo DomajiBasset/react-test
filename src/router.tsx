@@ -1,24 +1,27 @@
 import React, { StrictMode, useState } from "react";
-import { createRoot } from "react-dom/client";
+import { createRoot, Root } from "react-dom/client";
 import LeftMenu from "./components/LeftMenu";
+import { ThemeProvider } from './reducer/ThemeContext';
 import './style/main.scss';
-import { Route, Routes } from "react-router";
-import { routeConfig } from "./config/route.config";
-
 
 const Router = () => {
-    const [isCollapsed, setIsCollapsed] = useState(false);
-
     return (<>
         <div className="">
-            <LeftMenu activeTab="" iCollapsed={isCollapsed}></LeftMenu>
+            <ThemeProvider>
+                <LeftMenu activeTab="" iCollapsed={true}></LeftMenu>
+            </ThemeProvider>
         </div>
     </>);
 };
 
 const element = document.getElementById("react-root") as HTMLElement;
+const win = window as any;
+
+if (!win.__root__) {
+    win.__root__ = createRoot(element);
+}
+
 if (element) {
     element.style.width = '100%';
-    const root = createRoot(element);
-    root.render(<StrictMode><Router /></StrictMode>);
+    win.__root__.render(<StrictMode><Router /></StrictMode>);
 }

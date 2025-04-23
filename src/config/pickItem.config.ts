@@ -1,4 +1,14 @@
 
+export type RowData = {
+    id: string;
+    planNumber: string;
+    year: string;
+    englishCode: string;
+    title: string;
+    nature: string;
+    period: string;
+};
+
 export const rowData: RowData[] = [
     {
         id: '101001(101)',
@@ -46,13 +56,3 @@ export const th_Columns = [
     { title: 'Nature', className: 'th-width-12' },
     { title: 'Duration', className: 'th-width-18' },
 ];
-
-export type RowData = {
-    id: string;
-    planNumber: string;
-    year: string;
-    englishCode: string;
-    title: string;
-    nature: string;
-    period: string;
-};

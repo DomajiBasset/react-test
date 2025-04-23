@@ -1,17 +1,27 @@
 import React, { InputHTMLAttributes } from "react";
+import { useTheme } from "../../reducer/ThemeContext";
+import { getInputStyle } from "../../helpers/tool";
 
 type Props = {
     id: string,
     type: string,
-    placeholder?: string,
 } & InputHTMLAttributes<HTMLInputElement>
 
-export const Input = ({ id, type, placeholder, ...rest }: Props) => (
-    <input
-        id={id}
-        type={type}
-        placeholder={placeholder}
-        className="w-full border border-gray-300 rounded px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
-        {...rest}
-    />
-);
+export const Input = ({ id, type, placeholder, ...rest }: Props) => {
+    const { state: themeState, dispatch } = useTheme();
+    const bgStyle = getInputStyle(themeState.color, 'background');
+    const borderStyle = getInputStyle(themeState.color, 'border');
+    const focusStyle = getInputStyle(themeState.color, 'focus');
+
+    return (
+        <>
+            <input
+                id={id}
+                type={type}
+                placeholder={placeholder}
+                className={`w-full px-4 py-2 rounded ${bgStyle} ${borderStyle} ${focusStyle}`}
+                {...rest}
+            />
+        </>
+    )
+};

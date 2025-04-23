@@ -1,5 +1,8 @@
 import React, { useReducer } from "react";
 import BackButton from "../components/BackButton";
+import { DataList } from "../components/DataList";
+import { useLocation } from "react-router-dom";
+import { FormState } from "../reducer/formReducer";
 
 interface State {
     count: number;
@@ -24,18 +27,23 @@ function stateReducer(state: State, action: CounterAction): State {
 
 export default function Purchase() {
     const [state, dispatch] = useReducer(stateReducer, initialState);
-
+    const location = useLocation();
+    const formList = Array.isArray(location.state) ? location.state as FormState[] : [];
+    console.log(formList);
     const addFive = () => dispatch({ type: "setCount", value: state.count + 5 });
     const reset = () => dispatch({ type: "reset" });
 
     return (
-        <div>
-            <h1>Welcome to my counter</h1>
+        <>
+            <div>
+                <h1>Welcome to my counter</h1>
 
-            <p>Count: {state.count}</p>
-            <button onClick={addFive}>Add 5</button>
-            <button onClick={reset}>Reset</button>
-            <BackButton></BackButton>
-        </div>
+                <p>Count: {state.count}</p>
+                <button onClick={addFive}>Add 5</button>
+                <button onClick={reset}>Reset</button>
+                <DataList data={formList} />
+                <BackButton></BackButton>
+            </div>
+        </>
     );
 }

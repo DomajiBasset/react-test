@@ -33,11 +33,9 @@ export const Home = () => {
     console.log('表單送出！：', form.pickAreaValue);
     console.log('表單送出！：', form.text);
     console.log('表單送出！：', form.startPlace, '->', form.endPlace);
-    setFormList([...formList, form]); // form 是你目前 useReducer 的 state
-    navigate("/purchase");
-    // navigate('/newPage');
-    // console.log("送出資料：", form);
-    // 這邊可以送出 API、表單資料等
+    const newFormList = [...formList, form];
+    setFormList(newFormList);
+    navigate("/purchase", { state: newFormList });
   };
 
   // 🎯 額外挑戰（進階任務）
@@ -55,9 +53,6 @@ export const Home = () => {
     display: 'flex',
     flexWrap: 'wrap',
     width: '100%',
-    // 'borderWidth': '1px',
-    // 'borderStyle': 'solid none none solid',
-    // 'borderColor': 'rgb(113, 192, 244)'
   }
 
   return (<>
@@ -79,12 +74,6 @@ export const Home = () => {
           />
         </AreaWrapper>
 
-        <AreaWrapper label="TEST" childrenClassName="col2">
-          <>
-            <div></div>
-          </>
-        </AreaWrapper>
-
         <AreaWrapper label="CE">
           <ContentEditor
             maxLength={100}
@@ -103,12 +92,10 @@ export const Home = () => {
         <button
           type="submit"
           className="m-2 px-4 py-2 rounded-lg text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 transition duration-300"
-        // onClick={handleSubmit}
         >
           購票
         </button>
       </div>
-      <DataList data={formList} />
     </form>
   </>);
 };

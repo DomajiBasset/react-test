@@ -1,7 +1,12 @@
-import React, { StrictMode } from "react";
+import React from "react";
 import { useNavigate } from "react-router-dom";
+import { Label } from "../components/base/Label";
+import { Input } from "../components/base/Input";
+import { getBgColor } from "../helpers/tool";
+import { useTheme } from "../reducer/ThemeContext";
 
 export function Login() {
+    const { state: themeState, dispatch } = useTheme();
     const navigate = useNavigate();
 
     const handleLogin = (e: React.FormEvent) => {
@@ -10,32 +15,26 @@ export function Login() {
     };
 
     return (<>
-        <form name="form1" className="mainForm mx-auto mt-0 bg-white p-8 space-y-6" onSubmit={handleLogin}>
+        <form name="form1" className={`mainForm mx-auto mt-0 ${getBgColor(themeState.color)} p-8 space-y-6`} onSubmit={handleLogin}>
             <div>
-                <label className="block text-gray-700 font-semibold mb-2" htmlFor="email">
-                    Email
-                </label>
-                <input
-                    type="email"
+                <Label htmlFor="email" children="Email"></Label>
+                <Input
                     id="email"
-                    className="w-full border border-gray-300 rounded px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    type="email"
                     placeholder="請輸入 email"
-                />
+                ></Input>
             </div>
             <div>
-                <label className="block text-gray-700 font-semibold mb-2" htmlFor="password">
-                    密碼
-                </label>
-                <input
-                    type="password"
+                <Label htmlFor="password" children="Password"></Label>
+                <Input
                     id="password"
-                    className="w-full border border-gray-300 rounded px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
-                    placeholder="請輸入密碼"
-                />
+                    type="password"
+                    placeholder="請輸入 password"
+                ></Input>
             </div>
             <button
                 type="submit"
-                className="w-full bg-blue-600 text-white py-2 rounded hover:bg-blue-700 transition-colors"
+                className="w-full bg-blue-500 text-white py-2 rounded hover:bg-purple-600 transition-colors"
             >
                 登入
             </button>

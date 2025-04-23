@@ -2,18 +2,17 @@ import React, { useState } from "react";
 import { BrowserRouter, Link, Route, Routes } from "react-router-dom";
 import { routeConfig } from '../config/route.config';
 import RouteButton from "./RouteButton";
-import BackgroundColorPicker  from "./BackgroundColorPicker";
+import ThemeColorPicker from "./ThemeColorPicker";
 import { Bars3Icon } from '@heroicons/react/24/solid';
 
 
 function LeftMenu({ activeTab, iCollapsed }: { activeTab: string, iCollapsed: boolean }) {
     const [isCollapsed, setIsCollapsed] = useState(false);
-    const [bgColor, setBgColor] = useState('bg-red-300');
 
     return (
-        <div className={`flex h-screen ${bgColor}`}>
-            <BrowserRouter>
-                <div className={`left-area bg-gray-800 text-white transition-all duration-300 ${isCollapsed ? 'w-0 overflow-hidden' : 'w-60'}`}>
+        <BrowserRouter>
+            <div className={`flex`}>
+                <div className={`left-area h-screen bg-gray-800 text-white transition-all duration-300 ${isCollapsed ? 'w-0' : 'w-60'} overflow-hidden`}>
                     <ul className="space-y-2 mt-16">
                         {routeConfig.map((route, index) => (
                             <RouteButton
@@ -34,10 +33,7 @@ function LeftMenu({ activeTab, iCollapsed }: { activeTab: string, iCollapsed: bo
                         >
                             <Bars3Icon className="w-6 h-6 text-gray-700" />
                         </button>
-                        <BackgroundColorPicker 
-                            initialColor={bgColor}
-                            onChange={(color) => setBgColor(color)}
-                        />
+                        <ThemeColorPicker />
                     </div>
 
                     <Routes>
@@ -50,8 +46,8 @@ function LeftMenu({ activeTab, iCollapsed }: { activeTab: string, iCollapsed: bo
                         ))}
                     </Routes>
                 </div>
-            </BrowserRouter>
-        </div>
+            </div>
+        </BrowserRouter>
     );
 }
 

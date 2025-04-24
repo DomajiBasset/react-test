@@ -12,14 +12,12 @@ type Props = {
 };
 
 export const SearchInput = ({ data, suggestions, onChange }: Props) => {
-    // const [input1, setInput] = useState("");
     const [filtered, setFiltered] = useState<string[]>([]);
     const [showSuggestions, setShowSuggestions] = useState(false);
     const wrapperRef = useRef<HTMLDivElement>(null);
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const value = e.target.value;
-        // setInput(value);
         const matched = suggestions.filter((s: string) =>
             s.toLowerCase().includes(value.toLowerCase())
         );

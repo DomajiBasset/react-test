@@ -1,0 +1,14 @@
+{
+    "EN": "English",
+    "JP": "Japanese",
+    "ZH": "Traditional Chinese",
+    "FROMTO": "From To",
+    "DATE": "Date",
+    "BUY": "BUY",
+    "PASSWORD": "Password",
+    "EMAIL_PLACEHOLDER": "Please enter Email",
+    "PASSWORD_PLACEHOLDER": "Please enter Password",
+    "LANGUAGE":"Language",
+    "LOGIN":"LOGIN",
+    "END": "End"
+}

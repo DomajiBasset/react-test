@@ -1,0 +1,14 @@
+{
+    "EN": "英語",
+    "JP": "日本語",
+    "ZH": "繁体字",
+    "welcome": "歓迎",
+    "description": "これは多言語対応のウェブサイトです",
+    "EMAIL": "メール",
+    "PASSWORD": "パスワード",
+    "EMAIL_PLACEHOLDER": "メールアドレスを入力してください",
+    "PASSWORD_PLACEHOLDER": "パスワードを入力してください",
+    "LANGUAGE":"言語",
+    "LOGIN":"ログイン",
+    "END": "End"
+}

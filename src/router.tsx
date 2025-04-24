@@ -1,14 +1,50 @@
 import React, { StrictMode, useState } from "react";
-import { createRoot, Root } from "react-dom/client";
+import { createRoot } from "react-dom/client";
 import LeftMenu from "./components/LeftMenu";
 import { ThemeProvider } from './reducer/ThemeContext';
+import { BrowserRouter, Navigate, Route, Routes } from "react-router";
+import { routeConfig } from "./config/route.config";
+import { Bars3Icon, LanguageIcon } from "@heroicons/react/24/solid";
+import ThemeColorPicker from "./components/ThemeColorPicker";
 import './style/main.scss';
+import './i18n'; // 引入 i18n 配置
+import LanguageSelector from "./components/LanguageSelector";
 
 const Router = () => {
+    const [isCollapsed, setIsCollapsed] = useState(false);
+
     return (<>
         <div className="">
             <ThemeProvider>
-                <LeftMenu activeTab="" iCollapsed={true}></LeftMenu>
+                <BrowserRouter>
+                    <div className={`flex`}>
+                        <LeftMenu isCollapsed={isCollapsed} />
+                        <div className="flex-1 p-0 overflow-auto">
+                            <div className="flex justify-between items-center px-4 py-2 mb-0 bg-white border-b">
+                                <button
+                                    className="p-2 rounded-lg hover:bg-gray-100 bg-gray-50 border border-gray-300 text-gray-800 transition duration-150"
+                                    onClick={() => setIsCollapsed(!isCollapsed)}
+                                >
+                                    <Bars3Icon className="w-6 h-6 text-gray-700" />
+                                </button>
+                                <LanguageSelector></LanguageSelector>
+                                <ThemeColorPicker />
+                            </div>
+
+                            <Routes>
+                                {routeConfig.map((route, index) => (
+                                    <Route
+                                        key={index}
+                                        path={route.path}
+                                        element={<route.component />}
+                                    />
+                                ))}
+                                <Route path="*" element={<Navigate to="/login" />} />
+                            </Routes>
+                        </div>
+                    </div>
+
+                </BrowserRouter>
             </ThemeProvider>
         </div>
     </>);

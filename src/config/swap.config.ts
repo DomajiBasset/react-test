@@ -8,7 +8,7 @@ export type SwapInput = {
     val2: string;
 }
 
-export const dataExchange: SwapInput = {
+export const defaultData: SwapInput = {
     size1: 30,
     size2: 30,
     val1: 'AAA',

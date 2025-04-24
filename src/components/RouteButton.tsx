@@ -1,5 +1,7 @@
 import React from "react";
 import { Link, NavLink } from "react-router-dom";
+import { getLeftMenuStyle } from "../helpers/tool";
+import { useTheme } from "../reducer/ThemeContext";
 
 type Props = {
     labelName: string,
@@ -9,13 +11,13 @@ type Props = {
 }
 
 function RouteButton({ labelName, to, }: Props) {
+    const { state: themeState, dispatch } = useTheme();
     return (
-        <li>
+        <li className={`${getLeftMenuStyle(themeState.color).link} ${getLeftMenuStyle(themeState.color).hover}`}>
             <NavLink
                 to={to}
                 className={({ isActive }) =>
-                    `block p-2 cursor-pointer ${isActive ? 'bg-blue-600 text-white' : 'hover:bg-gray-700'
-                    }`
+                    `block p-2 cursor-pointer ${isActive ? 'bg-blue-600 text-white' : 'hover:bg-gray-700'}`
                 }
             >
                 {labelName}

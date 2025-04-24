@@ -17,7 +17,7 @@ export const routeConfig = [
     { labelName: "個人資訊", to: "/user/123", path: "/user/:id", component: Index },
     { labelName: "Test", to: "/test", path: "/test", component: TestEfficiencyPage }
 ];
-//多語系，APP?
+//APP?
 export const allRoutes = {
     home: [''],
     product: [''],

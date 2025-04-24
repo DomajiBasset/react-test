@@ -1,7 +1,7 @@
 import React, { useCallback, useEffect, useRef } from 'react';
 import { useState } from 'react';
 import { useTheme } from '../reducer/ThemeContext';
-import { getBgColor } from '../helpers/tool';
+import { getBackgroundColor } from '../helpers/tool';
 import { themeMap } from '../config/theme.config';
 
 interface ThemeColorPickerProps {
@@ -39,7 +39,7 @@ const ThemeColorPicker: React.FC<ThemeColorPickerProps> = ({
         <div ref={wrapperRef} className={`relative inline-block text-right`}>
             <button
                 onClick={() => setOpen(!open)}
-                className={`w-10 h-10 rounded-full border-2 border-gray-400 ${getBgColor(state.color)} shadow hover:scale-105 transition-transform duration-100`}
+                className={`w-8 h-8 rounded-full border-2 border-gray-400 ${getBackgroundColor(state.color)} shadow hover:scale-105 transition-transform duration-100`}
             ></button>
 
             {open && (
@@ -47,7 +47,7 @@ const ThemeColorPicker: React.FC<ThemeColorPickerProps> = ({
                     {themeMap.colors.map((color) => (
                         <button
                             key={color}
-                            className={`w-8 h-8 rounded-full border-2 ${getBgColor(color)} ${state.color === color ? "ring-2 ring-offset-2 ring-black" : ""}`}
+                            className={`w-8 h-8 rounded-full border-2 ${getBackgroundColor(color)} ${state.color === color ? "ring-2 ring-offset-2 ring-black" : ""}`}
                             onClick={() => handleSelect(color)}
                         ></button>
                     ))}

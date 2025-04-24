@@ -1,14 +1,25 @@
 import React from "react";
+import { Label } from "./base/Label";
+import { Trans, useTranslation } from "react-i18next";
+import { t } from "i18next";
+import { useTheme } from "../reducer/ThemeContext";
 
 type Props = {
-    iDiv: React.ReactNode,
-    className?: string
-}
+    label: string;
+    htmlFor: string;
+    children: React.ReactNode;
+    className?: string;
+};
 
-function Area({ iDiv, className }: Props) {
+export function FormField({ label, htmlFor, children, className }: Props) {
     return (
-        <div className={`area ${className ? className : ''}`}>
-            {iDiv}
+        <div className={`form-field ${className ?? ''}`}>
+            <label htmlFor={htmlFor} className="block mb-1 text-sm font-medium text-gray-700">
+                <Trans>
+                    {label}
+                </Trans>
+            </label>
+            {children}
         </div>
     );
 }
@@ -17,16 +28,25 @@ const AreaWrapper = ({
     label,
     children,
     labelClassName = "",
-    childrenClassName = "" }: { label: string; children: React.ReactNode, labelClassName?: string, childrenClassName?: string }) => (
-    <>
-        <div className="flex flex-col w-full">
-            {/* 標籤區域 */}
-            <Area iDiv={<div className={labelClassName}>{label}</div>} className="bg-gray-200 p-2" />
+    childrenClassName = "" }: { label: string; children: React.ReactNode, labelClassName?: string, childrenClassName?: string }) => {
+    const { state: themeState } = useTheme();
+    const { t } = useTranslation(themeState.namespace);
 
-            {/* 內容區域 */}
-            <Area iDiv={children} className={`bg-gray-100 p-2  ${childrenClassName}`} />
-        </div>
-    </>
-);
+    return (
+        <>
+            <div className="flex flex-col w-full">
+                {/* 標籤區域 */}
+                <div className={`bg-gray-200 p-2 ${labelClassName}`}>
+                    {t(label)}
+                </div>
+
+                {/* 內容區域 */}
+                <div className={`bg-gray-100 p-2  ${childrenClassName}`}>
+                    {children}
+                </div>
+            </div>
+        </>
+    )
+};
 
 export default AreaWrapper;

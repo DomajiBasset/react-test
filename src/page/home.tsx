@@ -1,19 +1,25 @@
-import React, { useState, useReducer } from "react";
+import React, { useState, useReducer, useEffect } from "react";
 import SwapButton from "../components/SwapButton.js";
 import AreaWrapper from "../components/Area.js";
 import PickArea from "../components/PickArea.js";
 import ContentEditor from "../components/ContentEditor.js";
 import DatePickerTest from "../components/DatePickerTest.js";
 import { formReducer, FormState } from "../reducer/formReducer.js";
-import { DataList } from "../components/DataList.js";
 import { useNavigate } from "react-router";
+import { useTheme } from "../reducer/ThemeContext.js";
 import '../style/main.scss';
+import { SubmitButton } from "../components/base/Button.js";
 
 export const Home = () => {
+  const ns = 'home';
+  const { dispatch } = useTheme();
   const navigate = useNavigate();
+  useEffect(() => {
+    dispatch({ type: 'setNameSpace', ns: ns });
+  }, [dispatch]);
 
   const [formList, setFormList] = useState<FormState[]>([]);
-  const [form, dispatch] = useReducer(formReducer, {
+  const [form, formDispatch] = useReducer(formReducer, {
     startDate: new Date(),
     pickAreaValue: [],
     text: "",
@@ -58,19 +64,19 @@ export const Home = () => {
   return (<>
     <form name="form1" className="mainForm" onSubmit={handleSubmit}>
       <div style={aStyle}>
-        <AreaWrapper label="*起訖">
+        <AreaWrapper label="FROMTO">
           <SwapButton
             onValueChange={(val1, val2) => {
-              dispatch({ type: "SET_START_PLACE", payload: val1 });
-              dispatch({ type: "SET_END_PLACE", payload: val2 });
+              formDispatch({ type: "SET_START_PLACE", payload: val1 });
+              formDispatch({ type: "SET_END_PLACE", payload: val2 });
             }}
           />
         </AreaWrapper>
 
-        <AreaWrapper label="*日期" childrenClassName="col2">
+        <AreaWrapper label="DATE" childrenClassName="">
           <DatePickerTest
             value={form.startDate}
-            onChange={(date) => dispatch({ type: "SET_START_DATE", payload: date as Date })}
+            onChange={(date) => formDispatch({ type: "SET_START_DATE", payload: date as Date })}
           />
         </AreaWrapper>
 
@@ -79,22 +85,20 @@ export const Home = () => {
             maxLength={100}
             maxRows={5}
             minRows={3}
-            onChange={(val) => dispatch({ type: "SET_TEXT", payload: val })}
+            onChange={(val) => formDispatch({ type: "SET_TEXT", payload: val })}
           />
         </AreaWrapper>
       </div>
 
       <PickArea
         value={form.pickAreaValue}
-        setValue={(val) => dispatch({ type: "SET_PICK_AREA", payload: val })}
+        setValue={(val) => formDispatch({ type: "SET_PICK_AREA", payload: val })}
       />
       <div className="flex justify-end">
-        <button
-          type="submit"
-          className="m-2 px-4 py-2 rounded-lg text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 transition duration-300"
-        >
-          購票
-        </button>
+        <SubmitButton
+          textCode="BUY"
+          className="m-2 px-4 py-2 w-20"
+        />
       </div>
     </form>
   </>);

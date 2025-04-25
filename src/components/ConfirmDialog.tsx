@@ -13,13 +13,13 @@ const ConfirmDialog = ({ isOpen, title, message, onConfirm, onCancel }: Props) =
 
     return (
         <>
-            <div className="fixed inset-0 bg-black opacity-30 flex justify-center items-center z-50"></div>
+            <div className="fixed inset-0 bg-black opacity-30 z-50"></div>
 
             <div className="relative flex justify-center items-center h-full z-60">
                 <div className="bg-white p-6 rounded-xl shadow-lg max-w-sm w-full space-y-4">
-                    {title && <h2 className="text-lg font-bold text-gray-800">{title}</h2>}
-                    <p className="text-gray-700">{message}</p>
-                    <div className="flex justify-end space-x-3">
+                    {title && <h2 className="text-lg text-center font-bold text-gray-800">{title}</h2>}
+                    <p className="text-gray-700 text-center">{message}</p>
+                    <div className="flex justify-center space-x-3">
                         <button
                             className="px-4 py-1 rounded bg-gray-300 hover:bg-gray-400"
                             onClick={onCancel}

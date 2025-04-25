@@ -9,6 +9,7 @@ import ThemeColorPicker from "./components/ThemeColorPicker";
 import LanguageSelector from "./components/LanguageSelector";
 import './style/main.scss';
 import './i18n';
+import { LoginButton } from "./components/base/Button";
 
 const Router = () => {
     const [isCollapsed, setIsCollapsed] = useState(false);
@@ -27,6 +28,7 @@ const Router = () => {
                                 >
                                     <Bars3Icon className="w-6 h-6 text-gray-700" />
                                 </button>
+                                <LoginButton textCode="LOGIN"></LoginButton>
                                 <LanguageSelector></LanguageSelector>
                                 <ThemeColorPicker />
                             </div>

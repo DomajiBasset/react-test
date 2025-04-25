@@ -15,11 +15,13 @@ const LanguageSelector = () => {
     const color = themeState.color === 'white' ? 'black' : themeState.color;
 
     return (
-        <div className="">
+        <>
             <div className="space-x-2">
-                <label htmlFor="language-select" className="inline-flex">
-                    <GlobeAltIcon className={`w-5 h-5`} style={{ fill: color }}></GlobeAltIcon>
-                    <Trans>LANGUAGE</Trans>:
+                <label htmlFor="language-select" className="inline-flex items-center">
+                    <div className=''>
+                        <GlobeAltIcon className={`w-6 h-6 inline-block`} style={{ fill: color }}></GlobeAltIcon>
+                    </div>
+                    {/* <Trans>LANGUAGE</Trans>: */}
                 </label>
                 <select
                     id="language-select"
@@ -34,7 +36,7 @@ const LanguageSelector = () => {
                     ))}
                 </select>
             </div>
-        </div>
+        </>
     );
 };
 

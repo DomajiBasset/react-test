@@ -4,11 +4,11 @@ import LeftMenu from "./components/LeftMenu";
 import { ThemeProvider } from './reducer/ThemeContext';
 import { BrowserRouter, Navigate, Route, Routes } from "react-router";
 import { routeConfig } from "./config/route.config";
-import { Bars3Icon, LanguageIcon } from "@heroicons/react/24/solid";
+import { Bars3Icon } from "@heroicons/react/24/solid";
 import ThemeColorPicker from "./components/ThemeColorPicker";
-import './style/main.scss';
-import './i18n'; // 引入 i18n 配置
 import LanguageSelector from "./components/LanguageSelector";
+import './style/main.scss';
+import './i18n';
 
 const Router = () => {
     const [isCollapsed, setIsCollapsed] = useState(false);
@@ -20,7 +20,7 @@ const Router = () => {
                     <div className={`flex`}>
                         <LeftMenu isCollapsed={isCollapsed} />
                         <div className="flex-1 p-0 overflow-auto">
-                            <div className="flex justify-between items-center px-4 py-2 mb-0 bg-white border-b">
+                            <div className="flex justify-between items-center px-4 py-0 mb-0 bg-white border-b">
                                 <button
                                     className="p-2 rounded-lg hover:bg-gray-100 bg-gray-50 border border-gray-300 text-gray-800 transition duration-150"
                                     onClick={() => setIsCollapsed(!isCollapsed)}

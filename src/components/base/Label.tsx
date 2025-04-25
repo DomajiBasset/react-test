@@ -1,19 +1,19 @@
 import React from "react";
 import { useTheme } from "../../reducer/ThemeContext";
-import { Trans } from "react-i18next";
+import { useTranslation } from "react-i18next";
 
 type Props = {
     htmlFor: string,
-    children: React.ReactNode,
+    textCode: string,
 }
 
-export const Label = ({ htmlFor, children }: Props) => {
-    const { state: themeState, dispatch } = useTheme();
+export const Label = ({ htmlFor, textCode: textCode }: Props) => {
+    const { state: themeState } = useTheme();
+    const { t } = useTranslation(themeState.namespace);
+
     return (
         <label className="block text-gray-800 font-semibold mb-2" htmlFor={htmlFor}>
-            <Trans>
-                {children}
-            </Trans>
+            {t(textCode)}
         </label>
     )
 };

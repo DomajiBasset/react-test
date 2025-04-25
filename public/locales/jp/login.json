@@ -10,5 +10,7 @@
     "PASSWORD_PLACEHOLDER": "パスワードを入力してください",
     "LANGUAGE":"言語",
     "LOGIN":"ログイン",
+    "ERROR_EMAIL_INVALID":"メールアドレスの形式が正しくありません。",
+    "ERROR_PASSWORD_INVALID":"パスワードは6文字以上必要です。",
     "END": "End"
 }

@@ -37,10 +37,12 @@ const ThemeColorPicker: React.FC<ThemeColorPickerProps> = ({
 
     return (
         <div ref={wrapperRef} className={`relative inline-block text-right`}>
-            <button
-                onClick={() => setOpen(!open)}
-                className={`w-8 h-8 rounded-full border-2 border-gray-400 ${getBackgroundColor(state.color)} shadow hover:scale-105 transition-transform duration-100`}
-            ></button>
+            <div className='flex item-center'>
+                <button
+                    onClick={() => setOpen(!open)}
+                    className={`w-8 h-8 rounded-full border-2 border-gray-400 ${getBackgroundColor(state.color)} shadow hover:scale-105 transition-transform duration-100`}
+                ></button>
+            </div>
 
             {open && (
                 <div className="absolute right-0 z-10 p-2 bg-white border rounded shadow grid grid-cols-3 gap-2 w-40">

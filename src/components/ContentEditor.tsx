@@ -1,16 +1,16 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 
 interface ContentEditorProps {
     maxLength: number; // 可選的最大長度屬性
     maxRows?: number;
     minRows?: number;
-    onChange?: (value: string) => void; // 加這個
+    onChange?: (value: string) => void;
 };
 
 const ContentEditor: React.FC<ContentEditorProps> = ({ maxLength, maxRows = 6, minRows = 1, onChange }) => {
-    const [content, setContent] = useState(""); // 儲存內容
+    const [content, setContent] = useState("");
     const editableRef = useRef<HTMLDivElement>(null); // 參考 contentEditable 的元素
-    const setLimitRow = (iEle: HTMLElement | null, iMaxRows: number, iMinRows: number) => {
+    const setLimitRow = useCallback((iEle: HTMLElement | null, iMaxRows: number, iMinRows: number) => {
         if (!iEle) return;
 
         const parentEle = iEle.parentElement;
@@ -34,8 +34,8 @@ const ContentEditor: React.FC<ContentEditorProps> = ({ maxLength, maxRows = 6, m
 
         // 套用樣式
         parentEle.style.maxHeight = `${wrapperMaxHeight}px`;
-        iEle.style.minHeight = `${wrapperMinHeight}px`;
-    };
+        iEle.style.minHeight = `${wrapperMaxHeight}px`;
+    }, []);
 
     useEffect(() => {
         setLimitRow(editableRef.current, maxRows, minRows);
@@ -66,12 +66,12 @@ const ContentEditor: React.FC<ContentEditorProps> = ({ maxLength, maxRows = 6, m
     };
 
     return (
-        <div className="editablearea">
+        <div className="overflow-auto inset-shadow-sm inset-shadow-gray-500">
             <div
                 ref={editableRef}
-                className="contentedit"
+                className="focus:outline-none"
                 contentEditable="true"
-                onInput={handleInput} // 監聽輸入變更
+                onInput={handleInput}
             />
             <input type="hidden" value={content} />
         </div>

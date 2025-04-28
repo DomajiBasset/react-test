@@ -1,6 +1,6 @@
 import React, { StrictMode, useEffect, useRef, useState } from "react";
 import { createRoot, Root } from "react-dom/client";
-import '../style/main.scss';
+// import '../style/main.scss';
 import SectionInput from "../components/SectionInput";
 import $ from 'jquery';
 

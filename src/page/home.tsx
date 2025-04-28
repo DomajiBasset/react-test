@@ -7,8 +7,9 @@ import DatePickerTest from "../components/DatePickerTest.js";
 import { formReducer, FormState } from "../reducer/formReducer.js";
 import { useNavigate } from "react-router";
 import { useTheme } from "../reducer/ThemeContext.js";
-import '../style/main.scss';
 import { SubmitButton } from "../components/base/Button.js";
+import '../style/home.scss';
+import HomeSwiper from "../components/Carousel.js";
 
 export const Home = () => {
   const ns = 'home';
@@ -64,6 +65,7 @@ export const Home = () => {
   return (<>
     <form name="form1" className="mainForm" onSubmit={handleSubmit}>
       <div style={aStyle}>
+        <HomeSwiper></HomeSwiper>
         <AreaWrapper label="FROMTO">
           <SwapButton
             onValueChange={(val1, val2) => {

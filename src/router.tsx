@@ -6,7 +6,7 @@ import { routeConfig } from "./config/route.config";
 import { Bars3Icon } from "@heroicons/react/24/solid";
 import ThemeColorPicker from "./components/ThemeColorPicker";
 import LanguageSelector from "./components/LanguageSelector";
-import './style/main.scss';
+// import './style/main.scss';
 import './i18n';
 import { LoginButton } from "./components/base/Button";
 import { Providers } from "./reducer/Providers";

@@ -30,4 +30,4 @@ export function formReducer(state: FormState, action: FormAction): FormState {
         default:
             return state;
     }
-}
+};

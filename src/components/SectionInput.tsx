@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 
 type Props = {
     value: number;
@@ -22,7 +22,7 @@ const SectionInput = ({
         if (isValid) {
             setValue(newValue === '' ? 0 : parseInt(newValue));
         }
-    }
+    };
 
     return (
         <div className="flex items-center space-x-2">
@@ -44,5 +44,4 @@ const SectionInput = ({
         </div>
     );
 };
-
 export default SectionInput;

@@ -35,5 +35,5 @@ export default function Index() {
             <button onClick={addFive}>Add 5</button>
             <button onClick={reset}>Reset</button>
         </div>
-    );
+    )
 }

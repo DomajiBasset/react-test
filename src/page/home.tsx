@@ -59,7 +59,7 @@ export const Home = () => {
     display: 'flex',
     flexWrap: 'wrap',
     width: '100%',
-  }
+  };
 
   return (<>
     <form name="form1" className="mainForm" onSubmit={handleSubmit}>
@@ -102,4 +102,4 @@ export const Home = () => {
       </div>
     </form>
   </>);
-};
+}

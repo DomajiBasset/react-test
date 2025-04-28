@@ -1,11 +1,11 @@
-import React, { useState } from "react";
+import React from "react";
 import { routeConfig } from '../config/route.config';
 import RouteButton from "./RouteButton";
 import { getLeftMenuStyle } from "../helpers/tool";
 import { useTheme } from "../reducer/ThemeContext";
 
 function LeftMenu({ isCollapsed }: { isCollapsed: boolean }) {
-    const { state: themeState, dispatch } = useTheme();
+    const { state: themeState } = useTheme();
     return (
         <>
             <div className={`h-screen ${getLeftMenuStyle(themeState.color).base} overflow-hidden transition-all duration-200 ${isCollapsed ? 'w-0' : 'w-60'}`}>
@@ -23,6 +23,5 @@ function LeftMenu({ isCollapsed }: { isCollapsed: boolean }) {
             </div>
         </>
     );
-}
-
+};
 export default LeftMenu;

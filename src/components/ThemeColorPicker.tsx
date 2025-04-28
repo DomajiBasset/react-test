@@ -7,7 +7,7 @@ import { themeMap } from '../config/theme.config';
 interface ThemeColorPickerProps {
     initialColor?: string;
     onChange?: (color: string) => void;
-}
+};
 
 const ThemeColorPicker: React.FC<ThemeColorPickerProps> = ({
     onChange,
@@ -58,5 +58,4 @@ const ThemeColorPicker: React.FC<ThemeColorPickerProps> = ({
         </div>
     );
 };
-
 export default ThemeColorPicker;

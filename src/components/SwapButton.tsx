@@ -25,7 +25,7 @@ export default function SwapButton({ data: dataSwap = defaultData, onValueChange
   //&nbsp; 寬度不一樣
   const aStyle = {
     cursor: 'pointer',
-  }
+  };
 
   // 定義交換值的函式
   const swapValues = (event: React.FormEvent) => {
@@ -57,4 +57,4 @@ export default function SwapButton({ data: dataSwap = defaultData, onValueChange
       </div>
     </>
   );
-}
+};

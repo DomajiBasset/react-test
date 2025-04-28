@@ -155,5 +155,4 @@ const PickArea = ({ value, setValue }: Props) => {
         </div>
     );
 };
-
 export default PickArea;

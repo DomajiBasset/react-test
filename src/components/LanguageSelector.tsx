@@ -1,7 +1,7 @@
 import React from 'react';
 import { Trans, useTranslation } from 'react-i18next';
 import { langMap } from '../config/lang.config';
-import { GlobeAltIcon, LanguageIcon } from "@heroicons/react/24/solid";
+import { GlobeAltIcon } from "@heroicons/react/24/solid";
 import { useTheme } from '../reducer/ThemeContext';
 
 const LanguageSelector = () => {
@@ -39,5 +39,4 @@ const LanguageSelector = () => {
         </>
     );
 };
-
 export default LanguageSelector;

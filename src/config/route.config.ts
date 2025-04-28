@@ -1,5 +1,4 @@
 import { TestEfficiencyPage } from "../page/testEfficiency.js";
-import { Login } from "../page/login.js";
 import { Home } from "../page/home.js";
 import Index from "../page/index.js";
 import Purchase from "../page/purchase.js";
@@ -8,7 +7,6 @@ import Success from "../page/success.js";
 import Records from "../page/records.js";
 
 export const routeConfig = [
-    { labelName: "登入", to: "/login", path: "/login", component: Login },
     { labelName: "首頁/搜尋", to: "/home", path: "/home", component: Home },
     { labelName: "購票", to: "/purchase", path: "/purchase", component: Purchase },
     { labelName: "付款", to: "/payment", path: "/payment", component: Payment },

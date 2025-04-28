@@ -5,7 +5,7 @@ interface ContentEditorProps {
     maxRows?: number;
     minRows?: number;
     onChange?: (value: string) => void; // 加這個
-}
+};
 
 const ContentEditor: React.FC<ContentEditorProps> = ({ maxLength, maxRows = 6, minRows = 1, onChange }) => {
     const [content, setContent] = useState(""); // 儲存內容
@@ -75,7 +75,6 @@ const ContentEditor: React.FC<ContentEditorProps> = ({ maxLength, maxRows = 6, m
             />
             <input type="hidden" value={content} />
         </div>
-    )
-}
-
+    );
+};
 export default ContentEditor;

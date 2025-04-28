@@ -6,6 +6,7 @@ import { getBackgroundColor } from "../helpers/tool";
 import { useTheme } from "../reducer/ThemeContext";
 import { isValidEmail } from "../helpers/utils";
 import { SubmitButton } from "../components/base/Button";
+import { useDialog } from "../reducer/DialogContext";
 
 type LoginFields = "email" | "password";
 type LoginErrors = Partial<Record<LoginFields, string>>;
@@ -13,6 +14,7 @@ type LoginErrors = Partial<Record<LoginFields, string>>;
 export function Login() {
     const ns = 'login';
     const { state: themeState, dispatch } = useTheme();
+    const { dispatch: dialogDispatch } = useDialog();
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [errors, setErrors] = useState<LoginErrors>({});
@@ -46,6 +48,7 @@ export function Login() {
         }
 
         if (Object.keys(newErrors).length === 0) {
+            dialogDispatch({ type: "CLOSE_DIALOG" })
             navigate("/home");
         }
     };
@@ -60,11 +63,15 @@ export function Login() {
         setPassword(value)
         setErrors(validate(email, value));
     }
+    function handleCancel(e: React.FormEvent) {
+        e.preventDefault();
+        dialogDispatch({ type: "CLOSE_DIALOG" })
+    }
 
     return (<>
         <form name="form1" className={`mx-auto p-8 space-y-6 ${getBackgroundColor(themeState.color)}`} onSubmit={handleLogin} noValidate>
             <div className="flex justify-center">
-                <div className="w-1/2">
+                <div className="w-3/4">
                     <Label htmlFor="email" textCode="EMAIL"></Label>
                     <Input
                         ref={refs.email}
@@ -79,7 +86,7 @@ export function Login() {
             </div>
 
             <div className="flex justify-center">
-                <div className="w-1/2">
+                <div className="w-3/4">
                     <Label htmlFor="password" textCode="PASSWORD"></Label>
                     <Input
                         ref={refs.password}
@@ -93,13 +100,18 @@ export function Login() {
                 </div>
             </div>
 
-            <div className="flex justify-center">
+            <div className="flex justify-center space-x-4">
+                <button
+                    className="w-1/4 py-2 rounded bg-gray-600 text-white hover:bg-gray-700"
+                    onClick={handleCancel}
+                >
+                    取消
+                </button>
                 <SubmitButton
                     textCode="LOGIN"
                     className="w-1/4 py-2"
                 />
             </div>
         </form>
-    </>
-    )
+    </>)
 }

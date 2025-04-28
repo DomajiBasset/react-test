@@ -1,7 +1,5 @@
 import React from "react";
-import { Label } from "./base/Label";
 import { Trans, useTranslation } from "react-i18next";
-import { t } from "i18next";
 import { useTheme } from "../reducer/ThemeContext";
 
 type Props = {
@@ -22,7 +20,7 @@ export function FormField({ label, htmlFor, children, className }: Props) {
             {children}
         </div>
     );
-}
+};
 
 const AreaWrapper = ({
     label,
@@ -46,7 +44,6 @@ const AreaWrapper = ({
                 </div>
             </div>
         </>
-    )
+    );
 };
-
 export default AreaWrapper;

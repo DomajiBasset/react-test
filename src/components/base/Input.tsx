@@ -11,7 +11,7 @@ type Props = {
     ref?: React.Ref<HTMLInputElement>
     placeholderCode?: string
     errorCode?: string
-} & InputHTMLAttributes<HTMLInputElement>
+} & InputHTMLAttributes<HTMLInputElement>;
 
 export const Input = ({ id, type, className = '', ref, placeholderCode = '', errorCode = '', ...rest }: Props) => {
     const { state: themeState } = useTheme();
@@ -38,5 +38,5 @@ export const Input = ({ id, type, className = '', ref, placeholderCode = '', err
                 </p>
             }
         </>
-    )
+    );
 };

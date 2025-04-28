@@ -3,12 +3,13 @@ import React, { ButtonHTMLAttributes, useState } from "react";
 import { useTheme } from "../../reducer/ThemeContext";
 import { getSubmitButtonStyle } from "../../helpers/tool";
 import { useTranslation } from "react-i18next";
-import Dialog, { LoginDialog } from "./Dialog";
+import { LoginDialog } from "./Dialog";
+import { useDialog } from "../../reducer/DialogContext";
 
 type SubmitProps = {
     textCode: string
     className?: string
-} & ButtonHTMLAttributes<HTMLButtonElement>
+} & ButtonHTMLAttributes<HTMLButtonElement>;
 
 export const SubmitButton = ({ textCode, className = '', ...rest }: SubmitProps) => {
     const { state: themeState } = useTheme();
@@ -28,21 +29,20 @@ export const SubmitButton = ({ textCode, className = '', ...rest }: SubmitProps)
                 {t(textCode)}
             </button>
         </>
-    )
+    );
 };
 
 type LoginProps = {
-    textCode: string
     className?: string
-} & ButtonHTMLAttributes<HTMLButtonElement>
+} & ButtonHTMLAttributes<HTMLButtonElement>;
 
-export const LoginButton = ({ textCode, className = '', ...rest }: LoginProps) => {
+export const LoginButton = ({ className = '', ...rest }: LoginProps) => {
     const { state: themeState } = useTheme();
     const { t } = useTranslation(themeState.namespace);
-    const [showDialog, setShowDialog] = useState(false);
+    const { dispatch } = useDialog();
 
     const handleClick = () => {
-        setShowDialog(true);
+        dispatch({ type: 'OPEN_DIALOG' });
     };
     const bgStyle = getSubmitButtonStyle(themeState.color).background;
     const fontStyle = getSubmitButtonStyle(themeState.color).font;
@@ -53,20 +53,13 @@ export const LoginButton = ({ textCode, className = '', ...rest }: LoginProps) =
         <>
             <button
                 type="submit"
-                className={`rounded transition-colors ${bgStyle} ${fontStyle} ${hoverStyle} ${focusStyle} ${className}`}
+                className={`px-2 py-1 rounded transition-colors ${bgStyle} ${fontStyle} ${hoverStyle} ${focusStyle} ${className}`}
                 onClick={handleClick}
                 {...rest}
             >
-                {t(textCode)}
+                {t("LOGIN")}
             </button>
-            <LoginDialog
-                isOpen={showDialog}
-                size="extraLarge2"
-                onCancel={() => setShowDialog(false)}
-                onConfirm={() => {
-                    setShowDialog(false);
-                }}
-            />
+            <LoginDialog />
         </>
-    )
+    );
 };

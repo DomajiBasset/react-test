@@ -5,7 +5,7 @@ interface PickItemProps {
     rowData: RowData;
     selected: boolean;
     onSelect: (id: string) => void;
-}
+};
 
 const PickItem: React.FC<PickItemProps> = ({ rowData, selected, onSelect }) => {
     const handleRowClick = () => {
@@ -43,5 +43,4 @@ const PickItem: React.FC<PickItemProps> = ({ rowData, selected, onSelect }) => {
         </tr>
     );
 };
-
 export default PickItem;

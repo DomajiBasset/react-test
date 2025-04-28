@@ -1,5 +1,5 @@
 import React from "react";
-import { Link, NavLink } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import { getLeftMenuStyle } from "../helpers/tool";
 import { useTheme } from "../reducer/ThemeContext";
 
@@ -8,7 +8,7 @@ type Props = {
     to: string,
     // icon: string,
     collapsed: boolean
-}
+};
 
 function RouteButton({ labelName, to, }: Props) {
     const { state: themeState, dispatch } = useTheme();
@@ -24,6 +24,5 @@ function RouteButton({ labelName, to, }: Props) {
             </NavLink>
         </li>
     );
-}
-
+};
 export default RouteButton;

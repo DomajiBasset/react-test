@@ -5,7 +5,7 @@ import { useTranslation } from "react-i18next";
 type Props = {
     htmlFor: string,
     textCode: string,
-}
+};
 
 export const Label = ({ htmlFor, textCode: textCode }: Props) => {
     const { state: themeState } = useTheme();
@@ -15,5 +15,5 @@ export const Label = ({ htmlFor, textCode: textCode }: Props) => {
         <label className="block text-gray-800 font-semibold mb-2" htmlFor={htmlFor}>
             {t(textCode)}
         </label>
-    )
+    );
 };

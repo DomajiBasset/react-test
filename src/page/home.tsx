@@ -10,11 +10,15 @@ import { useTheme } from "../reducer/ThemeContext.js";
 import { SubmitButton } from "../components/base/Button.js";
 import '../style/home.scss';
 import HomeSwiper from "../components/Carousel.js";
+import { isNullOrEmpty } from "../helpers/utils.js";
+import { ArrowsRightLeftIcon } from "@heroicons/react/24/solid";
+import DateRange from "../components/DateRange.js";
 
 export const Home = () => {
   const ns = 'home';
   const { dispatch } = useTheme();
   const navigate = useNavigate();
+  const [showDate, setShowDate] = useState(false);
   useEffect(() => {
     dispatch({ type: 'setNameSpace', ns: ns });
   }, [dispatch]);
@@ -45,6 +49,13 @@ export const Home = () => {
     navigate("/purchase", { state: newFormList });
   };
 
+  useEffect(() => {
+    console.log('fomr set,', form.startPlace);
+    if (!showDate) {
+      setShowDate(!isNullOrEmpty(form.startPlace));
+    }
+  }, [form]);
+
   // 🎯 額外挑戰（進階任務）
   // ✅ 加入刪除單筆資料按鈕
 
@@ -63,39 +74,43 @@ export const Home = () => {
   };
 
   return (<>
-    <form name="form1" className="mainForm" onSubmit={handleSubmit}>
+    <HomeSwiper></HomeSwiper>
+    <form name="form1" className="mainForm px-10" onSubmit={handleSubmit}>
       <div style={aStyle}>
-        <HomeSwiper></HomeSwiper>
-        <AreaWrapper label="FROMTO">
+        <AreaWrapper label="FROMTO" className="pt-5" labelClassName="border-t-3 border-gray-500">
           <SwapButton
             onValueChange={(val1, val2) => {
+              console.log(123);
               formDispatch({ type: "SET_START_PLACE", payload: val1 });
               formDispatch({ type: "SET_END_PLACE", payload: val2 });
             }}
           />
         </AreaWrapper>
 
-        <AreaWrapper label="DATE" childrenClassName="">
-          <DatePickerTest
-            value={form.startDate}
-            onChange={(date) => formDispatch({ type: "SET_START_DATE", payload: date as Date })}
-          />
-        </AreaWrapper>
-
-        <AreaWrapper label="CE">
-          <ContentEditor
-            maxLength={100}
-            maxRows={5}
-            minRows={3}
-            onChange={(val) => formDispatch({ type: "SET_TEXT", payload: val })}
-          />
-        </AreaWrapper>
+        {showDate && <AreaWrapper label="DATE" childrenClassName="">
+          <>
+            <DateRange
+              startDate={form.startDate}
+              onStartChange={(date) => formDispatch({ type: "SET_START_DATE", payload: date as Date })}
+              endDate={form.endDate}
+              onEndChange={(date) => formDispatch({ type: "SET_END_DATE", payload: date as Date })}
+            />
+          </>
+        </AreaWrapper>}
       </div>
 
       <PickArea
         value={form.pickAreaValue}
         setValue={(val) => formDispatch({ type: "SET_PICK_AREA", payload: val })}
       />
+      <AreaWrapper label="CE">
+        <ContentEditor
+          maxLength={100}
+          maxRows={5}
+          minRows={3}
+          onChange={(val) => formDispatch({ type: "SET_TEXT", payload: val })}
+        />
+      </AreaWrapper>
       <div className="flex justify-end">
         <SubmitButton
           textCode="BUY"

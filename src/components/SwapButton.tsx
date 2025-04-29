@@ -22,12 +22,6 @@ export default function SwapButton({ data: dataSwap = defaultData, onValueChange
     onValueChange?.(input1, input2);
   }, []);
 
-  //&nbsp; 寬度不一樣
-  const aStyle = {
-    cursor: 'pointer',
-  };
-
-  // 定義交換值的函式
   const swapValues = (event: React.FormEvent) => {
     event.preventDefault(); // 阻止表單的預設送出行為
     const [newInput1, newInput2] = swapValuesGeneric(input1, input2);
@@ -36,15 +30,24 @@ export default function SwapButton({ data: dataSwap = defaultData, onValueChange
     notifyChange(newInput1, newInput2);
   };
 
+  const handleInput1 = (val: string) => {
+    setInput1(val);
+    notifyChange(val, input2);
+  }
+  const handleInput2 = (val: string) => {
+    setInput2(val);
+    notifyChange(input1, val);
+  }
+
   return (
     <>
       <div className="flex items-center space-x-2">
         <SearchInput
           data={{ type: dataSwap.type1, size: dataSwap.size1, value: input1 }}
           suggestions={["台北", "台中", "台南", "高雄", "基隆", "新竹"]}
-          onChange={setInput1}
+          onChange={handleInput1}
         />
-        <a style={aStyle}
+        <a
           className="icon-change-btn cursor-pointer hover:text-blue-500"
           onClick={swapValues}>
           <ArrowsRightLeftIcon className="w-5 h-5 inline-block" />
@@ -52,7 +55,7 @@ export default function SwapButton({ data: dataSwap = defaultData, onValueChange
         <SearchInput
           data={{ type: dataSwap.type2, size: dataSwap.size2, value: input2 }}
           suggestions={["台北", "台中", "台南", "高雄", "基隆", "新竹"]}
-          onChange={setInput2}
+          onChange={handleInput2}
         />
       </div>
     </>

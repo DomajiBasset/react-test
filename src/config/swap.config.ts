@@ -11,8 +11,8 @@ export type SwapInput = {
 export const defaultData: SwapInput = {
     size1: 30,
     size2: 30,
-    val1: 'AAA',
-    val2: 'BBB',
+    val1: '',
+    val2: '',
     type1: 'text',
     type2: 'text'
 }

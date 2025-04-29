@@ -66,10 +66,10 @@ const ContentEditor: React.FC<ContentEditorProps> = ({ maxLength, maxRows = 6, m
     };
 
     return (
-        <div className="overflow-auto inset-shadow-sm inset-shadow-gray-500">
+        <div className="overflow-auto inset-shadow-sm inset-shadow-gray-500 min-w-100 w-100">
             <div
                 ref={editableRef}
-                className="focus:outline-none"
+                className="focus:outline-none w-100"
                 contentEditable="true"
                 onInput={handleInput}
             />

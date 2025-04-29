@@ -12,7 +12,7 @@ const ReadOnlyInput = React.forwardRef<HTMLInputElement, any>((props, ref) => (
         {...props}
         ref={ref}
         readOnly
-        className="w-40 px-3 py-2 border border-gray-300 rounded-md shadow-sm cursor-pointer bg-white text-sm"
+        className="px-3 py-2 border border-gray-300 rounded-md shadow-sm cursor-pointer bg-white text-sm"
         type='text' />
 ));
 const DatePickerTest = ({ value, onChange }: Props) => {

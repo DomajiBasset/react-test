@@ -7,3 +7,21 @@
 		@apply border-8 border-blue-500;
 	}
 }
+
+.swiper-button-prev,
+.swiper-button-next {
+	/* color: #ffffff;
+	background-color: rgba(0, 0, 0, 0.5);
+	padding: 12px;
+	border-radius: 50%;
+	width: 40px;
+	height: 40px; */
+}
+
+.swiper-button-prev {
+	/* right: 20px; */
+}
+
+.swiper-button-next {
+	/* right: 10px; */
+}

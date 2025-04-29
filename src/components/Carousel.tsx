@@ -3,34 +3,39 @@ import { MoonIcon, PhoneIcon, ScissorsIcon, StarIcon, SunIcon } from "@heroicons
 import { Swiper, SwiperSlide } from 'swiper/react';
 // import "./Carousel.css";
 import 'swiper/swiper-bundle.css'; // 引入 Swiper 樣式
-import { Pagination } from 'swiper/modules';
+import 'swiper/css/navigation';
+// import 'swiper/modules/autoplay.min.css'; // 引入 Swiper 樣式
+import { Pagination, Autoplay, Navigation } from 'swiper/modules';
 
 const HomeSwiper = () => {
     return (
         <Swiper
-            className="w-100"
-            modules={[Pagination]}
+            className="w-full border-b-4 border-purple-500"
+            modules={[Pagination, Autoplay, Navigation]}
             pagination={true}
-            spaceBetween={50} // 項目之間的間距
-            slidesPerView={1} // 顯示幾個滑塊
-            loop={true} // 是否循環
-            loopAdditionalSlides={1}
-            autoplay={{ delay: 2500, disableOnInteraction: false }} // 自動播放
+            navigation
+            autoplay={{ delay: 4000 }}
+            // spaceBetween={10}
+            // slidesPerView={2}
+            loop={true}
+            style={{
+                height: '200px'
+            }}
         >
             <SwiperSlide>
-                <MoonIcon></MoonIcon>
+                <MoonIcon className="w-50 justify-self-center"></MoonIcon>
             </SwiperSlide>
             <SwiperSlide>
-                <PhoneIcon></PhoneIcon>
+                <PhoneIcon className="w-50 justify-self-center"></PhoneIcon>
             </SwiperSlide>
             <SwiperSlide>
-                <ScissorsIcon></ScissorsIcon>
+                <ScissorsIcon className="w-50 justify-self-center"></ScissorsIcon>
             </SwiperSlide>
             <SwiperSlide>
-                <StarIcon></StarIcon>
+                <StarIcon className="w-50 justify-self-center"></StarIcon>
             </SwiperSlide>
             <SwiperSlide>
-                <SunIcon></SunIcon>
+                <SunIcon className="w-50 justify-self-center"></SunIcon>
             </SwiperSlide>
         </Swiper>
     );

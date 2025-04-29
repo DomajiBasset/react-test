@@ -25,22 +25,23 @@ export function FormField({ label, htmlFor, children, className }: Props) {
 const AreaWrapper = ({
     label,
     children,
+    className = "",
     labelClassName = "",
-    childrenClassName = "" }: { label: string; children: React.ReactNode, labelClassName?: string, childrenClassName?: string }) => {
+    childrenClassName = "" }: { label: string; children: React.ReactNode, className?: string, labelClassName?: string, childrenClassName?: string }) => {
     const { state: themeState } = useTheme();
     const { t } = useTranslation(themeState.namespace);
 
     return (
         <>
-            <div className="flex flex-col w-full">
-                {/* 標籤區域 */}
-                <div className={`bg-gray-200 p-2 ${labelClassName}`}>
+            <div className={`w-full flex flex-col ${className}`}>
+                <div className={`bg-gray-200 p-2 font-black text-center ${labelClassName}`}>
                     {t(label)}
                 </div>
 
-                {/* 內容區域 */}
-                <div className={`bg-gray-100 p-2  ${childrenClassName}`}>
-                    {children}
+                <div className={`w-full bg-gray-100 p-2 ${childrenClassName}`}>
+                    <div className="justify-self-center">
+                        {children}
+                    </div>
                 </div>
             </div>
         </>

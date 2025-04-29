@@ -2,6 +2,7 @@ import { RowData } from "../config/pickItem.config";
 
 export type FormState = {
     startDate: Date;
+    endDate: Date;
     pickAreaValue: RowData[];
     text: string;
     startPlace: string;
@@ -10,6 +11,7 @@ export type FormState = {
 
 type FormAction =
     | { type: "SET_START_DATE"; payload: Date }
+    | { type: "SET_END_DATE"; payload: Date }
     | { type: "SET_PICK_AREA"; payload: RowData[] }
     | { type: "SET_TEXT"; payload: string }
     | { type: "SET_START_PLACE"; payload: string }
@@ -19,6 +21,8 @@ export function formReducer(state: FormState, action: FormAction): FormState {
     switch (action.type) {
         case "SET_START_DATE":
             return { ...state, startDate: action.payload };
+        case "SET_END_DATE":
+            return { ...state, endDate: action.payload };
         case "SET_PICK_AREA":
             return { ...state, pickAreaValue: action.payload };
         case "SET_TEXT":

@@ -15,6 +15,7 @@ export const SearchInput = ({ data, suggestions, onChange }: Props) => {
     const [filtered, setFiltered] = useState<string[]>([]);
     const [showSuggestions, setShowSuggestions] = useState(false);
     const wrapperRef = useRef<HTMLDivElement>(null);
+    const [error, setError] = useState(false); // ➡️ 新增錯誤狀態
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const value = e.target.value;
@@ -23,17 +24,25 @@ export const SearchInput = ({ data, suggestions, onChange }: Props) => {
         );
         setFiltered(matched);
         setShowSuggestions(true);
-        onChange(e.target.value);
+        onChange(value);
+        if (value && matched.length === 0) {
+            setError(true);
+        } else {
+            setError(false);
+        }
     };
 
     const handleFocus = () => {
         setFiltered(suggestions);
-        setShowSuggestions(true);
+        if (!error) {
+            setShowSuggestions(true);
+        }
     };
 
     const handleSelect = (value: string) => {
         onChange(value);
         setShowSuggestions(false);
+        setError(false);
     };
 
     useEffect(() => {
@@ -59,6 +68,9 @@ export const SearchInput = ({ data, suggestions, onChange }: Props) => {
                     onChange={handleChange}
                     onFocus={handleFocus}
                 />
+                {error && (
+                    <p className="text-red-500 text-sm mt-1">找不到符合的選項，請重新輸入。</p>
+                )}
                 {showSuggestions && filtered.length > 0 && (
                     <ul className="absolute z-10 bg-white border mt-1 w-full rounded shadow max-h-60 overflow-y-auto">
                         {filtered.map((item, index) => (

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import ConfirmDialog from "./ConfirmDialog";
+// import ConfirmDialog from "./ConfirmDialog";
 
 const BackButton = () => {
     const navigate = useNavigate();
@@ -21,7 +21,7 @@ const BackButton = () => {
             >
                 返回上一頁
             </button>
-            <ConfirmDialog
+            {/* <ConfirmDialog
                 isOpen={showDialog}
                 title="提示"
                 message="確定要返回上一頁嗎？"
@@ -30,8 +30,7 @@ const BackButton = () => {
                     setShowDialog(false);
                     handleConfirm();
                 }}
-            />
+            /> */}
         </>
     );
 };
-export default BackButton;

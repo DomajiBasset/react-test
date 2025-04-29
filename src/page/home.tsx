@@ -26,6 +26,7 @@ export const Home = () => {
   const [formList, setFormList] = useState<FormState[]>([]);
   const [form, formDispatch] = useReducer(formReducer, {
     startDate: new Date(),
+    endDate: new Date(),
     pickAreaValue: [],
     text: "",
     startPlace: "",

@@ -1,9 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import ReactDOM from "react-dom";
 import { useTheme } from "../../reducer/ThemeContext";
 import { useTranslation } from "react-i18next";
 import { Login } from "../../page/login";
 import { useDialog } from "../../reducer/DialogContext";
+import { useNavigate } from "react-router";
 
 type Props = {
     title?: string;
@@ -18,6 +19,7 @@ type Props = {
 const Dialog = ({ title, message, onConfirm, onCancel, size = 'small', showButton = true, children }: Props) => {
     const { state, dispatch } = useDialog();
     if (!state.isOpen) return null;
+    const { t } = useTranslation('dialog');
 
     const dialogSizeClasses = {
         small: 'max-w-sm space-y-4',
@@ -27,12 +29,10 @@ const Dialog = ({ title, message, onConfirm, onCancel, size = 'small', showButto
 
     const handleCancelClick = () => {
         if (onCancel) onCancel();
-        dispatch({ type: 'CLOSE_DIALOG' });
     };
 
     const handleConfirmClick = () => {
         if (onConfirm) onConfirm();
-        dispatch({ type: 'CLOSE_DIALOG' });
     };
 
     return ReactDOM.createPortal(
@@ -41,7 +41,9 @@ const Dialog = ({ title, message, onConfirm, onCancel, size = 'small', showButto
             </div>
 
             <div className="fixed inset-0 flex items-center justify-center z-[60]">
-                <div className={`bg-white p-6 rounded-xl w-full ${dialogSizeClasses[size]}`}>
+                <div
+                    className={`bg-white p-6 rounded-xl w-full ${dialogSizeClasses[size]}`}
+                >
                     {title && <h2 className="text-lg text-center font-bold text-gray-800">{title}</h2>}
                     {message && <p className="text-gray-700 text-center">{message}</p>}
                     {children}
@@ -50,13 +52,13 @@ const Dialog = ({ title, message, onConfirm, onCancel, size = 'small', showButto
                             className="px-4 py-1 rounded bg-gray-300 hover:bg-gray-400"
                             onClick={handleCancelClick}
                         >
-                            取消
+                            {t('CANCEL')}
                         </button>
                         <button
                             className="px-4 py-1 rounded bg-blue-600 text-white hover:bg-blue-700"
                             onClick={handleConfirmClick}
                         >
-                            確定
+                            {t('CONFIRM')}
                         </button>
                     </div>}
                 </div>
@@ -80,6 +82,32 @@ export const LoginDialog = () => {
             >
                 <Login></Login>
             </Dialog>}
+        </>
+    );
+};
+
+export const ConfirmDialog = () => {
+    const navigate = useNavigate();
+    const { state, dispatch } = useDialog();
+    const { state: themeState } = useTheme();
+    const { t } = useTranslation('dialog');
+    const handleConfirm = () => {
+        dispatch({ type: 'CLOSE_DIALOG' });
+        navigate(-1);
+    };
+    const handleCancel = () => {
+        dispatch({ type: 'CLOSE_DIALOG' });
+    };
+
+    return (
+        <>
+            <Dialog
+                title={t("HINT")}
+                message={t("MSG_CONFIRM_BACK")}
+                size="small"
+                onConfirm={handleConfirm}
+                onCancel={handleCancel}
+            />
         </>
     );
 };

@@ -38,4 +38,3 @@ const ConfirmDialog = ({ isOpen, title, message, onConfirm, onCancel }: Props) =
         </>
     );
 };
-export default ConfirmDialog;

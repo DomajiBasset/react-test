@@ -7,7 +7,7 @@ type DialogState = {
 
 // 定義 action 類型
 type DialogAction =
-    | { type: 'OPEN_DIALOG' }
+    | { type: 'OPEN_DIALOG'; }
     | { type: 'CLOSE_DIALOG' };
 
 // 初始狀態

@@ -60,7 +60,6 @@ const ReactApp = (({ count, dataVersion, onRendered, shouldMeasure }: {
     }
 
     return () => {
-      // 可選清理：移除 jQuery
       const script = document.querySelector('script[src="https://code.jquery.com/jquery-3.7.2.min.js"]');
       if (script) {
         document.body.removeChild(script);

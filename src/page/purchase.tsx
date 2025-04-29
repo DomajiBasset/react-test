@@ -1,8 +1,8 @@
 import React, { useReducer } from "react";
-import BackButton from "../components/BackButton";
 import { DataList } from "../components/DataList";
 import { useLocation } from "react-router-dom";
 import { FormState } from "../reducer/formReducer";
+import { BackButton } from "../components/base/Button";
 
 interface State {
     count: number;
@@ -42,7 +42,7 @@ export default function Purchase() {
                 <button onClick={addFive}>Add 5</button>
                 <button onClick={reset}>Reset</button>
                 <DataList data={formList} />
-                <BackButton></BackButton>
+                <BackButton/>
             </div>
         </>
     );

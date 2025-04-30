@@ -5,6 +5,7 @@ import { useTranslation } from "react-i18next";
 import { Login } from "../../page/login";
 import { useDialog } from "../../reducer/DialogContext";
 import { useNavigate } from "react-router";
+import { NamespaceProvider, useNamespace } from "../../reducer/NameSpaceContext";
 
 type Props = {
     title?: string;
@@ -19,7 +20,9 @@ type Props = {
 const Dialog = ({ title, message, onConfirm, onCancel, size = 'small', showButton = true, children }: Props) => {
     const { state } = useDialog();
     if (!state.isOpen) return null;
-    const { t } = useTranslation('dialog', { useSuspense: false });
+
+    const ns = useNamespace();
+    const { t } = useTranslation(ns);
 
     const dialogSizeClasses = {
         small: 'max-w-sm space-y-4',
@@ -70,25 +73,29 @@ const Dialog = ({ title, message, onConfirm, onCancel, size = 'small', showButto
 export default Dialog;
 
 export const LoginDialog = () => {
-    const { t } = useTranslation('login', { useSuspense: false });
+    const ns = 'login';
+    const { t } = useTranslation(ns);
 
     return (
         <>
-            {<Dialog
-                title={t("LOGIN")}
-                size="large"
-                showButton={false}
-            >
-                <Login></Login>
-            </Dialog>}
+            <NamespaceProvider ns={ns}>
+                {<Dialog
+                    title={t("LOGIN")}
+                    size="large"
+                    showButton={false}
+                >
+                    <Login></Login>
+                </Dialog>}
+            </NamespaceProvider>
         </>
     );
 };
 
 export const ConfirmDialog = () => {
+    const ns = 'dialog';
     const navigate = useNavigate();
     const { dispatch } = useDialog();
-    const { t } = useTranslation('dialog', { useSuspense: false });
+    const { t } = useTranslation(ns);
     const handleConfirm = () => {
         dispatch({ type: 'CLOSE_DIALOG' });
         navigate(-1);
@@ -99,13 +106,15 @@ export const ConfirmDialog = () => {
 
     return (
         <>
-            <Dialog
-                title={t("HINT")}
-                message={t("MSG_CONFIRM_BACK")}
-                size="small"
-                onConfirm={handleConfirm}
-                onCancel={handleCancel}
-            />
+            <NamespaceProvider ns={ns}>
+                <Dialog
+                    title={t("HINT")}
+                    message={t("MSG_CONFIRM_BACK")}
+                    size="small"
+                    onConfirm={handleConfirm}
+                    onCancel={handleCancel}
+                />
+            </NamespaceProvider>
         </>
     );
 };

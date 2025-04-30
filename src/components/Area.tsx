@@ -1,6 +1,7 @@
 import React from "react";
 import { Trans, useTranslation } from "react-i18next";
 import { useTheme } from "../reducer/ThemeContext";
+import { useNamespace } from "../reducer/NameSpaceContext";
 
 type Props = {
     label: string;
@@ -29,7 +30,9 @@ const AreaWrapper = ({
     labelClassName = "",
     childrenClassName = "" }: { label: string; children: React.ReactNode, className?: string, labelClassName?: string, childrenClassName?: string }) => {
     const { state: themeState } = useTheme();
-    const { t } = useTranslation(themeState.namespace);
+    // const { t } = useTranslation(themeState.namespace);
+    const ns = useNamespace();
+    const { t } = useTranslation(ns);
 
     return (
         <>

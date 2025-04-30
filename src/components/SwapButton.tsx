@@ -9,14 +9,11 @@ type Props = {
 };
 
 export default function SwapButton({ refFrom, refTo, onValueChange }: Props) {
-  // const [input1, setInput1] = useState<string>(refFrom.current?.value ?? '');
-  // const [input2, setInput2] = useState<string>(refTo.current?.value ?? '');
 
   useEffect(() => {
     const val1 = refFrom.current?.value ?? '';
     const val2 = refTo.current?.value ?? '';
-    // setInput1(val1);
-    // setInput2(val2);
+
     onValueChange?.(val1, val2);
   }, []);
 
@@ -26,11 +23,6 @@ export default function SwapButton({ refFrom, refTo, onValueChange }: Props) {
     const input2 = refTo.current?.value ?? '';
     const [newInput1, newInput2] = swapValuesGeneric(input1, input2);
 
-    // setInput1(newInput1);
-    // setInput2(newInput2);
-
-    // if (refFrom.current) refFrom.current.value = newInput1;
-    // if (refTo.current) refTo.current.value = newInput2;
     onValueChange?.(newInput1, newInput2);
   };
 

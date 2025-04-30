@@ -7,6 +7,7 @@ import { useTheme } from "../reducer/ThemeContext";
 import { isNullOrEmpty, isValidEmail } from "../helpers/utils";
 import { SubmitButton } from "../components/base/Button";
 import { useDialog } from "../reducer/DialogContext";
+import { NamespaceProvider } from "../reducer/NameSpaceContext";
 
 type LoginFields = "email" | "password";
 type LoginErrors = Partial<Record<LoginFields, string>>;
@@ -25,9 +26,9 @@ export function Login() {
         password: useRef<HTMLInputElement>(null),
     };
 
-    useEffect(() => {
-        dispatch({ type: 'setNameSpace', ns: ns });
-    }, [dispatch]);
+    // useEffect(() => {
+    //     dispatch({ type: 'setNameSpace', ns: ns });
+    // }, [dispatch]);
 
     const validate = (email: string, password: string) => {
         const newErrors: LoginErrors = {};
@@ -69,51 +70,53 @@ export function Login() {
     }
 
     return (<>
-        <form name="form1" className={`mx-auto p-8 space-y-6 ${getBackgroundColor(themeState.color)}`} onSubmit={handleLogin} noValidate>
-            <div className="flex justify-center">
-                <div className="w-3/4">
-                    <Label htmlFor="email" textCode="EMAIL"></Label>
-                    <Input
-                        ref={refs.email}
-                        id="email"
-                        type="email"
-                        className="w-full px-4 py-2"
-                        placeholderCode="EMAIL_PLACEHOLDER"
-                        errorCode={errors.email}
-                        showError={!isNullOrEmpty(errors.email)}
-                        onChange={(e) => handleEmail(e)}
-                    ></Input>
+        <NamespaceProvider ns={ns}>
+            <form name="form1" className={`mx-auto p-8 space-y-6 ${getBackgroundColor(themeState.color)}`} onSubmit={handleLogin} noValidate>
+                <div className="flex justify-center">
+                    <div className="w-3/4">
+                        <Label htmlFor="email" textCode="EMAIL"></Label>
+                        <Input
+                            ref={refs.email}
+                            id="email"
+                            type="email"
+                            className="w-full px-4 py-2"
+                            placeholderCode="EMAIL_PLACEHOLDER"
+                            errorCode={errors.email}
+                            showError={!isNullOrEmpty(errors.email)}
+                            onChange={(e) => handleEmail(e)}
+                        ></Input>
+                    </div>
                 </div>
-            </div>
 
-            <div className="flex justify-center">
-                <div className="w-3/4">
-                    <Label htmlFor="password" textCode="PASSWORD"></Label>
-                    <Input
-                        ref={refs.password}
-                        id="password"
-                        type="password"
-                        className="w-full px-4 py-2"
-                        placeholderCode="PASSWORD_PLACEHOLDER"
-                        errorCode={errors.password}
-                        showError={!isNullOrEmpty(errors.password)}
-                        onChange={(e) => handlePassword(e)}
-                    ></Input>
+                <div className="flex justify-center">
+                    <div className="w-3/4">
+                        <Label htmlFor="password" textCode="PASSWORD"></Label>
+                        <Input
+                            ref={refs.password}
+                            id="password"
+                            type="password"
+                            className="w-full px-4 py-2"
+                            placeholderCode="PASSWORD_PLACEHOLDER"
+                            errorCode={errors.password}
+                            showError={!isNullOrEmpty(errors.password)}
+                            onChange={(e) => handlePassword(e)}
+                        ></Input>
+                    </div>
                 </div>
-            </div>
 
-            <div className="flex justify-center space-x-4">
-                <button
-                    className="w-1/4 py-2 rounded bg-gray-600 text-white hover:bg-gray-700"
-                    onClick={handleCancel}
-                >
-                    取消
-                </button>
-                <SubmitButton
-                    textCode="LOGIN"
-                    className="w-1/4 py-2"
-                />
-            </div>
-        </form>
+                <div className="flex justify-center space-x-4">
+                    <button
+                        className="w-1/4 py-2 rounded bg-gray-600 text-white hover:bg-gray-700"
+                        onClick={handleCancel}
+                    >
+                        取消
+                    </button>
+                    <SubmitButton
+                        textCode="LOGIN"
+                        className="w-1/4 py-2"
+                    />
+                </div>
+            </form>
+        </NamespaceProvider>
     </>)
 }

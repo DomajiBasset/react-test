@@ -3,6 +3,7 @@ import { useTheme } from "../../reducer/ThemeContext";
 import { getInputStyle } from "../../helpers/tool";
 import { useTranslation } from "react-i18next";
 import { isNullOrWhiteSpace } from "../../helpers/utils";
+import { useNamespace } from "../../reducer/NameSpaceContext";
 
 type Props = {
     className?: string,
@@ -14,7 +15,9 @@ type Props = {
 
 export const Input = forwardRef<HTMLInputElement, Props>(({ className = '', placeholderCode = '', errorCode = '', showError = false, ...rest }, ref) => {
     const { state: themeState } = useTheme();
-    const { t } = useTranslation(themeState.namespace);
+    // const { t } = useTranslation(themeState.namespace);
+    const ns = useNamespace();
+    const { t } = useTranslation(ns);
     const bgStyle = getInputStyle(themeState.color).background;
     const borderStyle = getInputStyle(themeState.color).border;
     const focusStyle = getInputStyle(themeState.color).focus;

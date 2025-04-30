@@ -5,15 +5,12 @@ import { initialTheme, ThemeState } from '../config/theme.config';
 
 type ThemeAction =
     | { type: 'setColor'; color: string }
-    | { type: 'setNameSpace'; ns: string }
     | { type: 'reset' };
 
 function themeReducer(state: ThemeState, action: ThemeAction): ThemeState {
     switch (action.type) {
         case 'setColor':
             return { color: action.color, namespace: state.namespace };
-        case 'setNameSpace':
-            return { color: state.color, namespace: action.ns };
         case 'reset':
             return initialTheme;
         default:

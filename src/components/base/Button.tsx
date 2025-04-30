@@ -5,6 +5,7 @@ import { getSubmitButtonStyle } from "../../helpers/tool";
 import { useTranslation } from "react-i18next";
 import { ConfirmDialog, LoginDialog } from "./Dialog";
 import { useDialog } from "../../reducer/DialogContext";
+import { useNamespace } from "../../reducer/NameSpaceContext";
 
 type SubmitProps = {
     textCode: string
@@ -13,7 +14,9 @@ type SubmitProps = {
 
 export const SubmitButton = ({ textCode, className = '', ...rest }: SubmitProps) => {
     const { state: themeState } = useTheme();
-    const { t } = useTranslation(themeState.namespace);
+    // const { t } = useTranslation(themeState.namespace);
+    const ns = useNamespace();
+    const { t } = useTranslation(ns);
     const bgStyle = getSubmitButtonStyle(themeState.color).background;
     const fontStyle = getSubmitButtonStyle(themeState.color).font;
     const hoverStyle = getSubmitButtonStyle(themeState.color).hover;
@@ -38,7 +41,9 @@ type LoginProps = {
 
 export const LoginButton = ({ className = '', ...rest }: LoginProps) => {
     const { state: themeState } = useTheme();
-    const { t } = useTranslation(themeState.namespace);
+    // const { t } = useTranslation(themeState.namespace);
+    const ns = useNamespace();
+    const { t } = useTranslation(ns);
     const { state, dispatch } = useDialog();
     const [showDialog, setShowDialog] = useState(false);
 

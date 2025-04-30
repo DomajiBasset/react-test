@@ -12,10 +12,12 @@ import { SubmitButton } from "../components/base/Button.js";
 import { isNullOrEmpty } from "../helpers/utils.js";
 import { SearchInput } from "../components/SearchInput.js";
 import '../style/home.scss';
+import { NamespaceProvider, useNamespace } from "../reducer/NameSpaceContext.js";
+import { useTranslation } from "react-i18next";
 
 export const Home = () => {
   const ns = 'home';
-  const { dispatch } = useTheme();
+  // const { dispatch } = useTheme();
   const navigate = useNavigate();
   const [showDate, setShowDate] = useState(false);
   const refFrom = useRef<HTMLInputElement>(null);
@@ -23,9 +25,9 @@ export const Home = () => {
   const [input1, setInput1] = useState<string>('');
   const [input2, setInput2] = useState<string>('');
 
-  useEffect(() => {
-    dispatch({ type: 'setNameSpace', ns: ns });
-  }, [dispatch]);
+  // useEffect(() => {
+  //   dispatch({ type: 'setNameSpace', ns: ns });
+  // }, [dispatch]);
 
   const [formList, setFormList] = useState<FormState[]>([]);
   const [form, formDispatch] = useReducer(formReducer, {
@@ -78,70 +80,72 @@ export const Home = () => {
   };
 
   return (<>
-    <HomeSwiper></HomeSwiper>
-    <form name="form1" className="mainForm px-10" onSubmit={handleSubmit}>
-      <div style={aStyle}>
-        <AreaWrapper label="FROMTO" className="pt-5" labelClassName="border-t-3 border-gray-500">
-          <div className="flex items-center py-3">
-            <SearchInput
-              ref={refFrom}
-              suggestions={["台北", "台中", "台南", "高雄", "基隆", "新竹"]}
-              onValueChange={(val) => { setInput1(val) }}
-              placeholderCode="FROM"
-              value={input1}
-            />
-            <div className="px-5">
-              <SwapButton
-                refFrom={refFrom}
-                refTo={refTo}
-                onValueChange={(val1, val2) => {
-                  setInput1(val1);
-                  formDispatch({ type: "SET_START_PLACE", payload: val1 });
-                  setInput2(val2);
-                  formDispatch({ type: "SET_END_PLACE", payload: val2 });
-                }}
+    <NamespaceProvider ns={ns}>
+      <HomeSwiper></HomeSwiper>
+      <form name="form1" className="mainForm px-10" onSubmit={handleSubmit}>
+        <div style={aStyle}>
+          <AreaWrapper label="FROMTO" className="pt-5" labelClassName="border-t-3 border-gray-500">
+            <div className="flex items-center py-3">
+              <SearchInput
+                ref={refFrom}
+                suggestions={["台北", "台中", "台南", "高雄", "基隆", "新竹"]}
+                onValueChange={(val) => { setInput1(val) }}
+                placeholderCode="FROM"
+                value={input1}
+              />
+              <div className="px-5">
+                <SwapButton
+                  refFrom={refFrom}
+                  refTo={refTo}
+                  onValueChange={(val1, val2) => {
+                    setInput1(val1);
+                    formDispatch({ type: "SET_START_PLACE", payload: val1 });
+                    setInput2(val2);
+                    formDispatch({ type: "SET_END_PLACE", payload: val2 });
+                  }}
+                />
+              </div>
+              <SearchInput
+                ref={refTo}
+                suggestions={["台北", "台中", "台南", "高雄", "基隆", "新竹"]}
+                onValueChange={(val) => { setInput2(val) }}
+                placeholderCode="TO"
+                value={input2}
               />
             </div>
-            <SearchInput
-              ref={refTo}
-              suggestions={["台北", "台中", "台南", "高雄", "基隆", "新竹"]}
-              onValueChange={(val) => { setInput2(val) }}
-              placeholderCode="TO"
-              value={input2}
-            />
-          </div>
+          </AreaWrapper>
+
+          {showDate && <AreaWrapper label="DATE" childrenClassName="">
+            <>
+              <DateRange
+                startDate={form.startDate}
+                onStartChange={(date) => formDispatch({ type: "SET_START_DATE", payload: date as Date })}
+                endDate={form.endDate}
+                onEndChange={(date) => formDispatch({ type: "SET_END_DATE", payload: date as Date })}
+              />
+            </>
+          </AreaWrapper>}
+        </div>
+
+        <PickArea
+          value={form.pickAreaValue}
+          setValue={(val) => formDispatch({ type: "SET_PICK_AREA", payload: val })}
+        />
+        <AreaWrapper label="CE">
+          <ContentEditor
+            maxLength={100}
+            maxRows={5}
+            minRows={3}
+            onChange={(val) => formDispatch({ type: "SET_TEXT", payload: val })}
+          />
         </AreaWrapper>
-
-        {showDate && <AreaWrapper label="DATE" childrenClassName="">
-          <>
-            <DateRange
-              startDate={form.startDate}
-              onStartChange={(date) => formDispatch({ type: "SET_START_DATE", payload: date as Date })}
-              endDate={form.endDate}
-              onEndChange={(date) => formDispatch({ type: "SET_END_DATE", payload: date as Date })}
-            />
-          </>
-        </AreaWrapper>}
-      </div>
-
-      <PickArea
-        value={form.pickAreaValue}
-        setValue={(val) => formDispatch({ type: "SET_PICK_AREA", payload: val })}
-      />
-      <AreaWrapper label="CE">
-        <ContentEditor
-          maxLength={100}
-          maxRows={5}
-          minRows={3}
-          onChange={(val) => formDispatch({ type: "SET_TEXT", payload: val })}
-        />
-      </AreaWrapper>
-      <div className="flex justify-end">
-        <SubmitButton
-          textCode="BUY"
-          className="m-2 px-4 py-2 w-20"
-        />
-      </div>
-    </form>
+        <div className="flex justify-end">
+          <SubmitButton
+            textCode="BUY"
+            className="m-2 px-4 py-2 w-20"
+          />
+        </div>
+      </form>
+    </NamespaceProvider>
   </>);
 }

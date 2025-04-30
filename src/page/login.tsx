@@ -4,7 +4,7 @@ import { Label } from "../components/base/Label";
 import { Input } from "../components/base/Input";
 import { getBackgroundColor } from "../helpers/tool";
 import { useTheme } from "../reducer/ThemeContext";
-import { isValidEmail } from "../helpers/utils";
+import { isNullOrEmpty, isValidEmail } from "../helpers/utils";
 import { SubmitButton } from "../components/base/Button";
 import { useDialog } from "../reducer/DialogContext";
 
@@ -80,6 +80,7 @@ export function Login() {
                         className="w-full px-4 py-2"
                         placeholderCode="EMAIL_PLACEHOLDER"
                         errorCode={errors.email}
+                        showError={!isNullOrEmpty(errors.email)}
                         onChange={(e) => handleEmail(e)}
                     ></Input>
                 </div>
@@ -95,6 +96,7 @@ export function Login() {
                         className="w-full px-4 py-2"
                         placeholderCode="PASSWORD_PLACEHOLDER"
                         errorCode={errors.password}
+                        showError={!isNullOrEmpty(errors.password)}
                         onChange={(e) => handlePassword(e)}
                     ></Input>
                 </div>

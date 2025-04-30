@@ -34,7 +34,7 @@ const AreaWrapper = ({
     return (
         <>
             <div className={`w-full flex flex-col ${className}`}>
-                <div className={`bg-gray-200 p-2 font-black text-center ${labelClassName}`}>
+                <div className={`bg-gray-200 p-2 font-black text-left ${labelClassName}`}>
                     {t(label)}
                 </div>
 

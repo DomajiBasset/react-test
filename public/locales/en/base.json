@@ -11,7 +11,5 @@
     "LANGUAGE": "Language",
     "LOGIN": "LOGIN",
     "ERROR_NO_VALID_OPTION": "No valid option found. Please try again.",
-    "FROM": "From",
-    "TO": "To",
     "END": "End"
 }

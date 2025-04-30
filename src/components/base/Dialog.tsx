@@ -17,9 +17,9 @@ type Props = {
 };
 
 const Dialog = ({ title, message, onConfirm, onCancel, size = 'small', showButton = true, children }: Props) => {
-    const { state, dispatch } = useDialog();
+    const { state } = useDialog();
     if (!state.isOpen) return null;
-    const { t } = useTranslation('dialog');
+    const { t } = useTranslation('dialog', { useSuspense: false });
 
     const dialogSizeClasses = {
         small: 'max-w-sm space-y-4',
@@ -70,8 +70,7 @@ const Dialog = ({ title, message, onConfirm, onCancel, size = 'small', showButto
 export default Dialog;
 
 export const LoginDialog = () => {
-    const { state: themeState } = useTheme();
-    const { t } = useTranslation(themeState.namespace);
+    const { t } = useTranslation('login', { useSuspense: false });
 
     return (
         <>
@@ -88,9 +87,8 @@ export const LoginDialog = () => {
 
 export const ConfirmDialog = () => {
     const navigate = useNavigate();
-    const { state, dispatch } = useDialog();
-    const { state: themeState } = useTheme();
-    const { t } = useTranslation('dialog');
+    const { dispatch } = useDialog();
+    const { t } = useTranslation('dialog', { useSuspense: false });
     const handleConfirm = () => {
         dispatch({ type: 'CLOSE_DIALOG' });
         navigate(-1);

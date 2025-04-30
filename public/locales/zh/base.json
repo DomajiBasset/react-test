@@ -11,7 +11,5 @@
     "LANGUAGE":"語言",
     "LOGIN":"登入",
     "ERROR_NO_VALID_OPTION": "找不到符合的選項，請重新輸入。",
-    "FROM": "出發地",
-    "TO": "目的地",
     "END": "End"
 }

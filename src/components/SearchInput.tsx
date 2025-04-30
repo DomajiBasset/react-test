@@ -1,21 +1,18 @@
-import React, { useEffect, useRef } from "react";
+import React, { forwardRef, InputHTMLAttributes, useEffect, useRef } from "react";
 import { useState } from "react";
+import { Input } from "./base/Input";
 
 type Props = {
-    data: {
-        type: string,
-        size: number,
-        value: string
-    }
-    onChange: (val: string) => void;
     suggestions: string[];
-};
+    onValueChange: (val: string) => void;
+    placeholderCode?: string
+} & InputHTMLAttributes<HTMLInputElement>;
 
-export const SearchInput = ({ data, suggestions, onChange }: Props) => {
+export const SearchInput = forwardRef<HTMLInputElement, Props>(({ suggestions, onValueChange, placeholderCode = "", ...rest }, ref) => {
     const [filtered, setFiltered] = useState<string[]>([]);
     const [showSuggestions, setShowSuggestions] = useState(false);
     const wrapperRef = useRef<HTMLDivElement>(null);
-    const [error, setError] = useState(false); // ➡️ 新增錯誤狀態
+    const [error, setError] = useState(false);
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const value = e.target.value;
@@ -23,8 +20,8 @@ export const SearchInput = ({ data, suggestions, onChange }: Props) => {
             s.toLowerCase().includes(value.toLowerCase())
         );
         setFiltered(matched);
+        onValueChange(value);
         setShowSuggestions(true);
-        onChange(value);
         if (value && matched.length === 0) {
             setError(true);
         } else {
@@ -40,9 +37,9 @@ export const SearchInput = ({ data, suggestions, onChange }: Props) => {
     };
 
     const handleSelect = (value: string) => {
-        onChange(value);
         setShowSuggestions(false);
         setError(false);
+        onValueChange(value);
     };
 
     useEffect(() => {
@@ -60,17 +57,15 @@ export const SearchInput = ({ data, suggestions, onChange }: Props) => {
     return (
         <>
             <div ref={wrapperRef} className="relative">
-                <input
-                    type={data.type}
-                    size={data.size}
-                    value={data.value}
-                    className="border p-2 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+                <Input
+                    ref={ref}
                     onChange={handleChange}
                     onFocus={handleFocus}
-                />
-                {error && (
-                    <p className="text-red-500 text-sm mt-1">找不到符合的選項，請重新輸入。</p>
-                )}
+                    showError={error}
+                    errorCode={"ERROR_NO_VALID_OPTION"}
+                    placeholderCode={placeholderCode}
+                    {...rest}
+                ></Input>
                 {showSuggestions && filtered.length > 0 && (
                     <ul className="absolute z-10 bg-white border mt-1 w-full rounded shadow max-h-60 overflow-y-auto">
                         {filtered.map((item, index) => (
@@ -87,4 +82,4 @@ export const SearchInput = ({ data, suggestions, onChange }: Props) => {
             </div>
         </>
     );
-};
+});

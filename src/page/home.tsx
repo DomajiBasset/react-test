@@ -1,24 +1,28 @@
-import React, { useState, useReducer, useEffect } from "react";
+import React, { useState, useReducer, useEffect, useRef } from "react";
 import SwapButton from "../components/SwapButton.js";
 import AreaWrapper from "../components/Area.js";
 import PickArea from "../components/PickArea.js";
 import ContentEditor from "../components/ContentEditor.js";
-import DatePickerTest from "../components/DatePickerTest.js";
+import HomeSwiper from "../components/Carousel.js";
+import DateRange from "../components/DateRange.js";
 import { formReducer, FormState } from "../reducer/formReducer.js";
 import { useNavigate } from "react-router";
 import { useTheme } from "../reducer/ThemeContext.js";
 import { SubmitButton } from "../components/base/Button.js";
-import '../style/home.scss';
-import HomeSwiper from "../components/Carousel.js";
 import { isNullOrEmpty } from "../helpers/utils.js";
-import { ArrowsRightLeftIcon } from "@heroicons/react/24/solid";
-import DateRange from "../components/DateRange.js";
+import { SearchInput } from "../components/SearchInput.js";
+import '../style/home.scss';
 
 export const Home = () => {
   const ns = 'home';
   const { dispatch } = useTheme();
   const navigate = useNavigate();
   const [showDate, setShowDate] = useState(false);
+  const refFrom = useRef<HTMLInputElement>(null);
+  const refTo = useRef<HTMLInputElement>(null);
+  const [input1, setInput1] = useState<string>('');
+  const [input2, setInput2] = useState<string>('');
+
   useEffect(() => {
     dispatch({ type: 'setNameSpace', ns: ns });
   }, [dispatch]);
@@ -51,7 +55,6 @@ export const Home = () => {
   };
 
   useEffect(() => {
-    console.log('fomr set,', form.startPlace);
     if (!showDate) {
       setShowDate(!isNullOrEmpty(form.startPlace));
     }
@@ -79,13 +82,34 @@ export const Home = () => {
     <form name="form1" className="mainForm px-10" onSubmit={handleSubmit}>
       <div style={aStyle}>
         <AreaWrapper label="FROMTO" className="pt-5" labelClassName="border-t-3 border-gray-500">
-          <SwapButton
-            onValueChange={(val1, val2) => {
-              console.log(123);
-              formDispatch({ type: "SET_START_PLACE", payload: val1 });
-              formDispatch({ type: "SET_END_PLACE", payload: val2 });
-            }}
-          />
+          <div className="flex items-center py-3">
+            <SearchInput
+              ref={refFrom}
+              suggestions={["台北", "台中", "台南", "高雄", "基隆", "新竹"]}
+              onValueChange={(val) => { setInput1(val) }}
+              placeholderCode="FROM"
+              value={input1}
+            />
+            <div className="px-5">
+              <SwapButton
+                refFrom={refFrom}
+                refTo={refTo}
+                onValueChange={(val1, val2) => {
+                  setInput1(val1);
+                  formDispatch({ type: "SET_START_PLACE", payload: val1 });
+                  setInput2(val2);
+                  formDispatch({ type: "SET_END_PLACE", payload: val2 });
+                }}
+              />
+            </div>
+            <SearchInput
+              ref={refTo}
+              suggestions={["台北", "台中", "台南", "高雄", "基隆", "新竹"]}
+              onValueChange={(val) => { setInput2(val) }}
+              placeholderCode="TO"
+              value={input2}
+            />
+          </div>
         </AreaWrapper>
 
         {showDate && <AreaWrapper label="DATE" childrenClassName="">

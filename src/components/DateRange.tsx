@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import DatePicker from "react-datepicker";
 import { zhTW } from 'date-fns/locale';
 import "react-datepicker/dist/react-datepicker.css";
+import { Input } from "./base/Input";
 
 type Props = {
     startDate: Date;
@@ -10,32 +11,34 @@ type Props = {
     onEndChange: (date: Date | null) => void;
 };
 const ReadOnlyInput = React.forwardRef<HTMLInputElement, any>((props, ref) => (
-    <input
+    <Input
         {...props}
         ref={ref}
         readOnly
-        className="px-3 py-2 border border-gray-300 rounded-md shadow-sm cursor-pointer bg-white text-sm"
-        type='text' />
+    />
 ));
 const DateRange = ({ startDate, onStartChange, endDate, onEndChange }: Props) => {
 
     return (
         <>
-            <div className="flex items-center space-x-10">
+            <div className="flex items-center">
                 <DatePicker
                     selected={startDate}
                     onChange={onStartChange}
                     selectsStart
                     startDate={startDate}
-                    endDate={endDate}
+                    // endDate={endDate}
                     locale={zhTW}
                     customInput={<ReadOnlyInput></ReadOnlyInput>}
                 />
+                <div className="px-5">
+                    <div className="w-5"></div>
+                </div>
                 <DatePicker
                     selected={endDate}
                     onChange={onEndChange}
                     selectsEnd
-                    startDate={startDate}
+                    // startDate={startDate}
                     endDate={endDate}
                     minDate={startDate}
                     locale={zhTW}

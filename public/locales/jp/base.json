@@ -11,7 +11,5 @@
     "LANGUAGE":"言語",
     "LOGIN":"ログイン",
     "ERROR_NO_VALID_OPTION": "該当する選択肢が見つかりません。\nもう一度入力してください。",
-    "FROM": "出発地",
-    "TO": "目的地",
     "END": "End"
 }

@@ -7,28 +7,20 @@ import HomeSwiper from "../components/Carousel.js";
 import DateRange from "../components/DateRange.js";
 import { formReducer, FormState } from "../reducer/formReducer.js";
 import { useNavigate } from "react-router";
-import { useTheme } from "../reducer/ThemeContext.js";
 import { SubmitButton } from "../components/base/Button.js";
 import { isNullOrEmpty } from "../helpers/utils.js";
 import { SearchInput } from "../components/SearchInput.js";
 import '../style/home.scss';
 import { NamespaceProvider, useNamespace } from "../reducer/NameSpaceContext.js";
-import { useTranslation } from "react-i18next";
 
 export const Home = () => {
   const ns = 'home';
-  // const { dispatch } = useTheme();
   const navigate = useNavigate();
-  const [showDate, setShowDate] = useState(false);
   const refFrom = useRef<HTMLInputElement>(null);
   const refTo = useRef<HTMLInputElement>(null);
   const [input1, setInput1] = useState<string>('');
   const [input2, setInput2] = useState<string>('');
-
-  // useEffect(() => {
-  //   dispatch({ type: 'setNameSpace', ns: ns });
-  // }, [dispatch]);
-
+  const [showDate, setShowDate] = useState(false);
   const [formList, setFormList] = useState<FormState[]>([]);
   const [form, formDispatch] = useReducer(formReducer, {
     startDate: new Date(),
@@ -38,6 +30,12 @@ export const Home = () => {
     startPlace: "",
     endPlace: ""
   });
+
+  useEffect(() => {
+    if (!showDate) {
+      setShowDate(!isNullOrEmpty(form.startPlace));
+    }
+  }, [form]);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -56,11 +54,14 @@ export const Home = () => {
     navigate("/purchase", { state: newFormList });
   };
 
-  useEffect(() => {
-    if (!showDate) {
-      setShowDate(!isNullOrEmpty(form.startPlace));
-    }
-  }, [form]);
+  const handleInput1 = (val: string) => {
+    setInput1(val);
+    formDispatch({ type: "SET_START_PLACE", payload: val });
+  }
+  const handleInput2 = (val: string) => {
+    setInput2(val);
+    formDispatch({ type: "SET_END_PLACE", payload: val });
+  }
 
   // 🎯 額外挑戰（進階任務）
   // ✅ 加入刪除單筆資料按鈕
@@ -79,6 +80,9 @@ export const Home = () => {
     width: '100%',
   };
 
+  const suggestFrom = ["台北", "台中", "台南", "高雄", "基隆", "新竹"];
+  const suggestTo = ["台北", "台中", "台南", "高雄", "基隆", "新竹"];
+
   return (<>
     <NamespaceProvider ns={ns}>
       <HomeSwiper></HomeSwiper>
@@ -88,8 +92,8 @@ export const Home = () => {
             <div className="flex items-center py-3">
               <SearchInput
                 ref={refFrom}
-                suggestions={["台北", "台中", "台南", "高雄", "基隆", "新竹"]}
-                onValueChange={(val) => { setInput1(val) }}
+                suggestions={suggestFrom}
+                onValueChange={handleInput1}
                 placeholderCode="FROM"
                 value={input1}
               />
@@ -107,8 +111,8 @@ export const Home = () => {
               </div>
               <SearchInput
                 ref={refTo}
-                suggestions={["台北", "台中", "台南", "高雄", "基隆", "新竹"]}
-                onValueChange={(val) => { setInput2(val) }}
+                suggestions={suggestTo}
+                onValueChange={handleInput2}
                 placeholderCode="TO"
                 value={input2}
               />

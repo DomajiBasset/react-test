@@ -1,0 +1,16 @@
+{
+    "EN": "英文",
+    "JP": "日文",
+    "ZH": "中文",
+    "welcome": "歡迎來到 React",
+    "description": "這是一個多語言網站",
+    "EMAIL": "信箱",
+    "PASSWORD": "密碼",
+    "EMAIL_PLACEHOLDER": "請輸入信箱",
+    "PASSWORD_PLACEHOLDER": "請輸入密碼",
+    "LANGUAGE":"語言",
+    "LOGIN":"登入",
+    "ERROR_EMAIL_INVALID":"信箱格式錯誤",
+    "ERROR_PASSWORD_INVALID":"密碼至少 6 碼",
+    "END": "End"
+}

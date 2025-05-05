@@ -1,0 +1,22 @@
+{
+  "_browser-ponyfill-DrJKOMYR.js": {
+    "file": "assets/browser-ponyfill-DrJKOMYR.js",
+    "name": "browser-ponyfill",
+    "isDynamicEntry": true,
+    "imports": [
+      "index.html"
+    ]
+  },
+  "index.html": {
+    "file": "assets/index-BgJ_GQwc.js",
+    "name": "index",
+    "src": "index.html",
+    "isEntry": true,
+    "dynamicImports": [
+      "_browser-ponyfill-DrJKOMYR.js"
+    ],
+    "css": [
+      "assets/index-K14zd7RR.css"
+    ]
+  }
+}

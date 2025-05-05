@@ -1,0 +1,15 @@
+{
+    "EN": "英文",
+    "JP": "日文",
+    "ZH": "中文",
+    "FROMTO": "起訖地點",
+    "DATE": "日期",
+    "BUY": "購票",
+    "PASSWORD": "密碼",
+    "EMAIL_PLACEHOLDER": "請輸入信箱",
+    "PASSWORD_PLACEHOLDER": "請輸入密碼",
+    "LANGUAGE":"語言",
+    "LOGIN":"登入",
+    "ERROR_NO_VALID_OPTION": "找不到符合的選項，請重新輸入。",
+    "END": "End"
+}

@@ -1,0 +1,16 @@
+{
+    "EN": "English",
+    "JP": "Japanese",
+    "ZH": "Traditional Chinese",
+    "welcome": "Welcome to React",
+    "description": "This is a multi-language website",
+    "EMAIL": "Email",
+    "PASSWORD": "Password",
+    "EMAIL_PLACEHOLDER": "Please enter Email",
+    "PASSWORD_PLACEHOLDER": "Please enter Password",
+    "LANGUAGE":"Language",
+    "LOGIN":"LOGIN",
+    "ERROR_EMAIL_INVALID":"The email format is incorrect.",
+    "ERROR_PASSWORD_INVALID":"The password must be at least 6 characters.",
+    "END": "End"
+}

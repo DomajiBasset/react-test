@@ -1,0 +1,17 @@
+{
+    "EN": "英語",
+    "JP": "日本語",
+    "ZH": "繁体字",
+    "FROMTO": "出発地と到着地",
+    "DATE": "デート",
+    "BUY": "購入",
+    "PASSWORD": "パスワード",
+    "EMAIL_PLACEHOLDER": "メールアドレスを入力してください",
+    "PASSWORD_PLACEHOLDER": "パスワードを入力してください",
+    "LANGUAGE":"言語",
+    "LOGIN":"ログイン",
+    "ERROR_NO_VALID_OPTION": "該当する選択肢が見つかりません。\nもう一度入力してください。",
+    "FROM": "出発地",
+    "TO": "目的地",
+    "END": "End"
+}

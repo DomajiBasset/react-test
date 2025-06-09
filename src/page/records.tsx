@@ -29,8 +29,13 @@ export default function Records() {
 
     return (
         <div>
-            <h1>Welcome to my counter</h1>
-
+            <h1>Test</h1>
+            <div className="bird-face">
+                <div className="pupil"></div>
+                <div className="face-upper"></div>
+                <div className="face-lower"></div>
+                <div className="beak"></div>
+            </div>
             <p>Count: {state.count}</p>
             <button onClick={addFive}>Add 5</button>
             <button onClick={reset}>Reset</button>

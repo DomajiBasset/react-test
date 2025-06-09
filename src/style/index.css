@@ -6,3 +6,54 @@
 		@apply border-8 border-blue-500;
 	}
 }
+
+.bird-face {
+	width: 125px;
+	height: 125px;
+	background-color: white;
+	border-radius: 50%;
+	position: relative;
+	border: 2px solid #ccc;
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.pupil {
+	width: 20px;
+	height: 20px;
+	background-color: black;
+	border-radius: 50%;
+	position: absolute;
+	top: 40%;
+	left: 60%;
+	transform: translate(-50%, -50%);
+}
+
+.beak {
+	position: absolute;
+	width: 100px;
+	height: 100px;
+	background: rgb(151, 146, 136);
+	clip-path: path("M0 60, V0 30, Q100 20, 100 60, Q50 50,0 60, Z");
+	top: 20px;
+	left: 120px;
+}
+
+.face-upper {
+	position: absolute;
+	width: 100px;
+	height: 100px;
+	background: rgb(95, 90, 80);
+	clip-path: path("M0 60, Q0 40, 100 30, V60 60, Z");
+	top: -40px;
+	left: 10px;
+}
+
+.face-lower {
+	position: absolute;
+	width: 100px;
+	height: 100px;
+	background: rgb(95, 90, 80);
+	clip-path: path("M0 60, V0 30, H100, Q80 70, 0 60, Z");
+	top: 60px;
+	left: 20px;
+}
